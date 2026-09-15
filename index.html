@@ -15,10 +15,12 @@
         .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
         .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
         
-        /* Solution Box Hover Effect */
         .solution-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
         .solution-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
         .solution-box:hover h3, .solution-box:hover p { color: #FFFFFF !important; }
+
+        /* Fix for anchor overlap under sticky header */
+        #inquiry { scroll-margin-top: 100px; }
 
         .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
         .clean-input:focus { outline: none; border-color: #3B0B45; }
@@ -237,7 +239,6 @@
         const phoneVal = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
 
-        // Exact mapping from webpage fields to Zoho keys
         const formData = {
             First_Name: firstName,
             Last_Name: lastName,
