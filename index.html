@@ -1,182 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us - Solutions by Sandra</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions by Sandra</title>
 
-  <!-- Cloudflare Turnstile API Script -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Cloudflare Turnstile API -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f4f6f9;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .form-container {
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      max-width: 500px;
-      width: 100%;
-    }
-
-    .form-container h2 {
-      margin-bottom: 8px;
-      font-size: 24px;
-      color: #1a1a1a;
-    }
-
-    .form-container p {
-      margin-bottom: 24px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      font-size: 13px;
-      color: #444;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 15px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #0070f3;
-      box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.15);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .cf-turnstile {
-      margin-bottom: 18px;
-    }
-
-    button[type="submit"] {
-      width: 100%;
-      background-color: #0070f3;
-      color: #ffffff;
-      border: none;
-      padding: 14px;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #0051a8;
-    }
-
-    button[type="submit"]:disabled {
-      background-color: #999;
-      cursor: not-allowed;
-    }
-
-    #form-status {
-      margin-top: 16px;
-      font-size: 14px;
-      text-align: center;
-      font-weight: 500;
-    }
-
-    #form-status.success {
-      color: #0e8a16;
-    }
-
-    #form-status.error {
-      color: #d9381e;
-    }
-  </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 antialiased font-sans flex flex-col min-h-screen">
 
-  <div class="form-container">
-    <h2>Get in Touch</h2>
-    <p>Fill out the form below and we will get back to you shortly.</p>
+  <!-- Navigation Bar -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-bold text-gray-900 tracking-tight">
+        Solutions by Sandra
+      </a>
+      <nav class="flex items-center space-x-6">
+        <a href="index.html" class="text-sm font-medium text-blue-600 hover:text-blue-700 transition">Home</a>
+        <a href="essentials.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">Essentials</a>
+        <a href="#inquiry" class="text-sm font-medium bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
 
-    <form id="contact-form">
-      <div class="form-group">
-        <label for="name">Full Name *</label>
-        <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+  <!-- Hero Section -->
+  <section class="bg-white border-b border-gray-100 py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+        Streamlined Business Solutions
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        Tailored support, efficient systems, and dedicated management to help your operations run seamlessly.
+      </p>
+      <a href="#inquiry" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+        Submit an Inquiry
+      </a>
+    </div>
+  </section>
+
+  <!-- Overview Section -->
+  <section class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Systems & Automation</h3>
+        <p class="text-gray-600 text-sm">Organize workflows, integrate your favorite tools, and eliminate repetitive tasks.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Event & Project Management</h3>
+        <p class="text-gray-600 text-sm">End-to-end execution, scheduling, logistics, and communications built for clarity.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Client Onboarding</h3>
+        <p class="text-gray-600 text-sm">Direct, structured intake pipelines that move inquiries straight into execution.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry / Contact Form Section -->
+  <section id="inquiry" class="py-16 bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold text-gray-900">Get in Touch</h2>
+        <p class="text-gray-600 mt-2">Fill out the form below and we will get back to you shortly.</p>
       </div>
 
-      <div class="form-group">
-        <label for="email">Email Address *</label>
-        <input type="email" id="email" name="email" placeholder="jane@example.com" required />
-      </div>
+      <form id="contact-form" class="space-y-5 bg-gray-50 p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm">
+        <div>
+          <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
+          <input type="text" id="name" name="name" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Jane Doe" />
+        </div>
 
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" />
-      </div>
+        <div>
+          <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Email Address *</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="jane@example.com" />
+        </div>
 
-      <div class="form-group">
-        <label for="company">Company Name</label>
-        <input type="text" id="company" name="company" placeholder="Company / Organization" />
-      </div>
+        <div>
+          <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="(555) 000-0000" />
+        </div>
 
-      <div class="form-group">
-        <label for="message">Message *</label>
-        <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
-      </div>
+        <div>
+          <label for="company" class="block text-sm font-semibold text-gray-700 mb-1">Company Name</label>
+          <input type="text" id="company" name="company" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Company / Organization" />
+        </div>
 
-      <!-- Cloudflare Turnstile Widget -->
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
+        <div>
+          <label for="message" class="block text-sm font-semibold text-gray-700 mb-1">Message *</label>
+          <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="How can we help you?"></textarea>
+        </div>
 
-      <button type="submit" id="submit-btn">Send Message</button>
-      <div id="form-status"></div>
-    </form>
-  </div>
+        <!-- Cloudflare Turnstile Widget -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
 
+        <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 shadow disabled:opacity-50">
+          Send Message
+        </button>
+
+        <div id="form-status" class="text-center text-sm font-medium mt-3"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      &copy; Solutions by Sandra. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Form Submission Logic -->
   <script>
     const form = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
     const statusDiv = document.getElementById('form-status');
 
-    // REPLACE THIS WITH YOUR LIVE CLOUDFLARE WORKER URL ONCE CREATED
-const WORKER_ENDPOINT = 'https://zohoform.solutionsbysandra.workers.dev/';
-    
+    const WORKER_ENDPOINT = 'https://zohoform.solutionsbysandra.workers.dev/';
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // UI state reset
       statusDiv.textContent = 'Sending...';
-      statusDiv.className = '';
+      statusDiv.className = 'text-center text-sm font-medium mt-3 text-gray-600';
       submitBtn.disabled = true;
 
       const formData = new FormData(form);
@@ -192,9 +141,7 @@ const WORKER_ENDPOINT = 'https://zohoform.solutionsbysandra.workers.dev/';
       try {
         const response = await fetch(WORKER_ENDPOINT, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
@@ -202,21 +149,20 @@ const WORKER_ENDPOINT = 'https://zohoform.solutionsbysandra.workers.dev/';
 
         if (response.ok && result.success) {
           statusDiv.textContent = 'Thank you! Your message has been sent successfully.';
-          statusDiv.className = 'success';
+          statusDiv.className = 'text-center text-sm font-medium mt-3 text-green-600';
           form.reset();
           if (window.turnstile) turnstile.reset();
         } else {
           statusDiv.textContent = result.error || 'Something went wrong. Please try again.';
-          statusDiv.className = 'error';
+          statusDiv.className = 'text-center text-sm font-medium mt-3 text-red-600';
         }
       } catch (err) {
         statusDiv.textContent = 'Network error. Please try again later.';
-        statusDiv.className = 'error';
+        statusDiv.className = 'text-center text-sm font-medium mt-3 text-red-600';
       } finally {
         submitBtn.disabled = false;
       }
     });
   </script>
-
 </body>
 </html>
