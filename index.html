@@ -161,7 +161,7 @@
                     </div>
 
                     <!-- Cloudflare Turnstile Widget -->
-                    <div class="cf-turnstile my-4" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+                    <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
 
                     <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
                 </form>
@@ -213,7 +213,7 @@
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
 
-        // Replace with your Cloudflare Worker URL
+        // SWAP THIS URL ONCE YOU CREATE AND DEPLOY YOUR CLOUDFLARE WORKER
         const workerEndpoint = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev';
 
         try {
