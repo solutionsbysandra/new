@@ -215,34 +215,36 @@
         submitBtn.disabled = true;
         submitBtn.innerText = 'SENDING...';
 
+        // Parse Full Name into First Name & Last Name
         const fullName = document.getElementById('c-name').value.trim();
         const nameParts = fullName.split(' ');
         const firstName = nameParts[0] || fullName;
         const lastName = nameParts.slice(1).join(' ') || fullName;
 
+        // Company fallback for Zoho mandatory field
         const companyElem = document.getElementById('c-company');
         const companyInput = companyElem ? companyElem.value.trim() : '';
         const companyName = companyInput !== '' ? companyInput : `${fullName} (Individual)`;
 
         const email = document.getElementById('c-email').value.trim();
-        const phoneVal = document.getElementById('c-phone').value.trim();
+        const phone = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
 
+        // Comprehensive payload covering Zoho REST API, Zoho Webform, and Worker formats
         const formData = {
-            // Zoho CRM API Keys
+            // Zoho CRM API Keys (Underscores)
             First_Name: firstName,
             Last_Name: lastName,
             Company: companyName,
             Email: email,
-            Mobile: phoneVal,
-            Phone: phoneVal,
+            Phone: phone,
             Description: message,
 
-            // Zoho Web-to-Lead Keys
+            // Zoho Web-to-Lead Keys (Spaces)
             'First Name': firstName,
             'Last Name': lastName,
 
-            // Worker / Generic Fallbacks
+            // Worker / Standard Form Fallbacks
             name: fullName,
             firstName: firstName,
             lastName: lastName,
@@ -250,8 +252,7 @@
             last_name: lastName,
             company: companyName,
             email: email,
-            mobile: phoneVal,
-            phone: phoneVal,
+            phone: phone,
             message: message,
             description: message,
 
