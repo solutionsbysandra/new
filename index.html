@@ -1,336 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions by Sandra | Sales Funnels • Digital Automations • Systems Architect</title>
+<!-- Cloudflare Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-    <!-- Cloudflare Turnstile Script -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
+    html, body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
+    #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; background: #FFFFFF; width: 100%; min-height: 100vh; }
+    .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 1rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
+    .process-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
+    .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
+    .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
+    .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
+    .clean-input:focus { outline: none; border-color: #3B0B45; }
+    .custom-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 0.4rem; }
+    .fade-in { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
-        
-        /* Fix anchor offset for sticky header */
-        html { scroll-padding-top: 90px; scroll-behavior: smooth; }
-        
-        body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; color: #1e293b; line-height: 1.4; }
-        
-        /* Custom Vanilla CSS Layout & Component Styles */
-        *, ::before, ::after { box-sizing: border-box; }
-        
-        img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; color: inherit; }
-        
-        #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; background: #FFFFFF; width: 100%; min-height: 100vh; }
-        
-        /* Navigation */
-        .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 0.75rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 0 1.5rem; max-width: 80rem; margin: 0 auto; }
-        .nav-logo { width: 14rem; height: auto; }
-        @media (min-width: 640px) { .nav-logo { width: 16rem; } }
-        @media (min-width: 768px) { .nav-logo { width: 20rem; } }
-        
-        .nav-desktop-links { display: none; align-items: center; gap: 2.5rem; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: #334155; }
-        .nav-desktop-links a:hover { color: #3B0B45; }
-        .nav-cta-btn { background-color: #3B0B45; color: white; padding: 0.75rem 2rem; border-radius: 9999px; text-transform: uppercase; }
-        .nav-cta-btn:hover { opacity: 0.9; }
-        @media (min-width: 768px) { .nav-desktop-links { display: flex; } }
-        
-        .nav-mobile-toggle-btn { display: block; background: none; border: none; color: #3B0B45; font-size: 1.5rem; padding: 0.5rem; cursor: pointer; }
-        @media (min-width: 768px) { .nav-mobile-toggle-btn { display: none; } }
-        
-        #mobile-menu { display: none; position: fixed; left: 0; right: 0; top: 65px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8f0; padding: 2rem; flex-direction: column; gap: 1.5rem; font-weight: 800; font-size: 1.125rem; text-transform: uppercase; letter-spacing: 0.1em; color: #334155; text-align: center; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); z-index: 999; }
-        #mobile-menu:not(.hidden) { display: flex; }
-        
-        /* Hero Section */
-        .hero-section { padding: 3.5rem 1.5rem; max-width: 80rem; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
-        @media (min-width: 768px) {
-            .hero-section { padding: 5rem 1.5rem; flex-direction: row; gap: 4rem; }
-            .hero-content { width: 50%; text-align: left; }
-            .hero-image-wrapper { width: 50%; max-width: 450px; }
-        }
-        .hero-subtitle { color: #3B0B45; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 0.75rem; display: block; }
-        .hero-title { font-size: 2.5rem; font-weight: 800; color: #3B0B45; line-height: 1.1; }
-        @media (min-width: 640px) { .hero-title { font-size: 3rem; } }
-        @media (min-width: 768px) { .hero-title { font-size: 4.5rem; } }
-        .hero-title span { font-style: italic; font-weight: 300; color: #94a3b8; font-size: 1.875rem; }
-        @media (min-width: 640px) { .hero-title span { font-size: 2.25rem; } }
-        @media (min-width: 768px) { .hero-title span { font-size: 3.75rem; } }
-        .hero-desc { margin-top: 1rem; font-size: 1.125rem; color: #475569; max-width: 28rem; line-height: 1.4; margin-left: auto; margin-right: auto; }
-        @media (min-width: 768px) { .hero-desc { margin-left: 0; margin-right: 0; font-size: 1.25rem; } }
-        .hero-btn { width: 100%; display: inline-block; background: #3B0B45; color: white; padding: 1rem 2.5rem; font-weight: 700; border-radius: 0.25rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; text-align: center; transition: transform 0.2s; }
-        .hero-btn:hover { transform: translateY(-4px); }
-        @media (min-width: 640px) { .hero-btn { width: auto; } }
-        .hero-img { border-radius: 2.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); width: 100%; height: auto; object-fit: cover; }
-        
-        /* About / Process Section */
-        .about-section { padding: 4.5rem 0; border-top: 1px solid #f1f5f9; }
-        .about-container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center; }
-        @media (min-width: 768px) { .about-container { grid-template-columns: 1fr 1fr; gap: 5rem; } }
-        .about-text-col { color: #64748b; line-height: 1.4; font-size: 1rem; text-align: center; }
-        @media (min-width: 768px) { .about-text-col { font-size: 1.125rem; text-align: left; } }
-        .about-text-col p { margin-bottom: 1rem; }
-        .about-text-col p:last-child { margin-bottom: 0; }
-        .about-heading-sub { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.4em; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .about-heading-main { font-size: 1.875rem; font-weight: 700; color: #3B0B45; line-height: 1.15; margin-bottom: 1.25rem; }
-        @media (min-width: 768px) { .about-heading-main { font-size: 3rem; } }
-        .process-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-        @media (min-width: 640px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
-        .process-box { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.75rem; border-radius: 1rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
-        .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
-        .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
-        .step-title { color: #3B0B45; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; display: block; }
-        .step-desc { font-size: 0.875rem; color: #475569; margin-top: 0.35rem; font-weight: 500; line-height: 1.4; }
-
-        /* Solutions Grid */
-        .solutions-section { padding: 4.5rem 0; background-color: #f8fafc; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
-        .solutions-container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; text-align: center; }
-        @media (min-width: 768px) { .solutions-container { text-align: left; } }
-        .solutions-title { font-size: 1.875rem; font-weight: 800; color: #3B0B45; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: -0.05em; }
-        @media (min-width: 768px) { .solutions-title { font-size: 3rem; } }
-        .solutions-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-        @media (min-width: 768px) { .solutions-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .solutions-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
-        
-        .solution-card { 
-            background: white; 
-            padding: 2rem 2.25rem; 
-            border-radius: 1.5rem; 
-            border: 1px solid #f1f5f9; 
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); 
-            text-align: left; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 160px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            cursor: default; 
-        }
-        .solution-card:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
-        .solution-card:hover h3, .solution-card:hover p { color: #FFFFFF !important; }
-        .solution-card h3 { 
-            font-size: 1.25rem; 
-            font-weight: 700; 
-            color: #3B0B45; 
-            margin-bottom: 0.5rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-        }
-        .solution-card p { 
-            color: #475569; 
-            font-size: 1rem; 
-            line-height: 1.4; 
-            margin: 0; 
-        }
-
-        /* Inquiry Section */
-        .inquiry-section { padding: 4.5rem 0; background: white; }
-        .inquiry-container { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
-        .inquiry-header { text-align: center; margin-bottom: 2.5rem; }
-        .inquiry-header h2 { font-size: 1.875rem; font-weight: 700; color: #3B0B45; margin-bottom: 0.5rem; }
-        @media (min-width: 768px) { .inquiry-header h2 { font-size: 3rem; } }
-        .inquiry-header p { color: #94a3b8; font-style: italic; font-size: 1rem; margin: 0; }
-        @media (min-width: 768px) { .inquiry-header p { font-size: 1.125rem; } }
-        
-        .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 0.75rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; color: #1e293b; line-height: 1.4; }
-        .clean-input:focus { outline: none; border-color: #3B0B45; }
-        .custom-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 0.25rem; }
-        
-        .form-grid-2 { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
-        @media (min-width: 768px) { .form-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
-        
-        .form-submit-btn { width: 100%; background: #3B0B45; color: white; font-weight: 700; padding: 1.25rem; border: none; border-radius: 0.25rem; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); cursor: pointer; transition: background-color 0.2s; font-size: 0.75rem; }
-        .form-submit-btn:hover { background: #1e293b; }
-        
-        /* Footer */
-        .footer-block { padding: 3rem 0; border-top: 1px solid #e2e8f0; background: white; }
-        .footer-container { max-width: 80rem; margin: 0 auto; padding: 0 1.5rem; text-align: center; }
-        @media (min-width: 768px) { .footer-container { text-align: left; } }
-        .footer-flex { display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 1.5rem; }
-        @media (min-width: 768px) { .footer-flex { flex-direction: row; gap: 0; } }
-        .footer-brand { display: flex; flex-direction: column; align-items: center; }
-        @media (min-width: 768px) { .footer-brand { align-items: flex-start; } }
-        .footer-logo { width: 12rem; margin-bottom: 0.5rem; }
-        @media (min-width: 768px) { .footer-logo { width: 16rem; } }
-        .footer-email { font-size: 0.75rem; font-weight: 700; color: #3B0B45; text-transform: uppercase; letter-spacing: 0.2em; }
-        .footer-copy { font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.1em; }
-
-        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-</head>
-<body>
-
-<div id="sandra-site-wrapper">
+<div id="sandra-site-wrapper" class="text-slate-800 antialiased dark:bg-slate-900 dark:text-slate-100">
     <!-- NAVIGATION -->
-    <header class="nav-header-block">
-        <nav class="nav-container">
-            <div style="display: flex; align-items: center;">
+    <header class="nav-header-block sticky top-0 z-[1000] dark:bg-slate-900 dark:border-slate-800">
+        <nav class="flex flex-row items-center justify-between px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+            <div class="flex items-center">
                 <a href="/">
-                    <img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="nav-logo" alt="Solutions by Sandra">
+                    <img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="w-44 sm:w-56 md:w-80 h-auto" alt="Solutions by Sandra">
                 </a>
             </div>
-            <div class="nav-desktop-links">
-                <a href="/#about">How I Help</a>
-                <a href="/#solutions">Services</a>
-                <a href="/essentials">Essentials</a>
-                <a href="/#inquiry" class="nav-cta-btn">LET'S TALK</a>
+            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                <a href="/#about" class="hover:text-[#3B0B45] dark:hover:text-purple-400">How I Help</a>
+                <a href="/#solutions" class="hover:text-[#3B0B45] dark:hover:text-purple-400">Services</a>
+                <a href="/essentials" class="hover:text-[#3B0B45] dark:hover:text-purple-400">Essentials</a>
+                <a href="/#inquiry" class="bg-[#3B0B45] text-white px-8 py-3 rounded-full hover:opacity-90 transition-all uppercase">LET'S TALK</a>
             </div>
-            <div class="nav-mobile-toggle-btn">
-                <button onclick="toggleMenu()" style="background: none; border: none; color: inherit; cursor: pointer; font-size: 1.5rem;" aria-label="Toggle Mobile Menu">
+            <div class="md:hidden">
+                <button onclick="toggleMenu()" class="text-[#3B0B45] dark:text-purple-400 text-2xl p-2" aria-label="Toggle Mobile Menu">
                     <i id="menu-icon" class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </nav>
         
         <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden">
-            <a href="/#about" onclick="toggleMenu()" style="padding: 0.5rem 0;">How I Help</a>
-            <a href="/#solutions" onclick="toggleMenu()" style="padding: 0.5rem 0;">Services</a>
-            <a href="/essentials" onclick="toggleMenu()" style="padding: 0.5rem 0;">Essentials</a>
-            <a href="/#inquiry" onclick="toggleMenu()" style="background: #3B0B45; color: white; padding: 1rem; border-radius: 0.75rem; font-size: 0.875rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">LET'S TALK</a>
+        <div id="mobile-menu" class="hidden fixed inset-x-0 top-[73px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 p-8 flex flex-col space-y-6 font-extrabold text-lg uppercase tracking-widest text-slate-700 dark:text-slate-200 md:hidden text-center shadow-2xl z-[999]">
+            <a href="/#about" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45] dark:hover:text-purple-400">How I Help</a>
+            <a href="/#solutions" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45] dark:hover:text-purple-400">Services</a>
+            <a href="/essentials" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45] dark:hover:text-purple-400">Essentials</a>
+            <a href="/#inquiry" onclick="toggleMenu()" class="bg-[#3B0B45] text-white py-4 rounded-xl shadow-md text-sm">LET'S TALK</a>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <span class="hero-subtitle">Sales Funnels • Digital Automations • Systems Architect</span>
-            <h1 class="hero-title">Run your business. <br><span>I'll handle the tech.</span></h1>
-            <p class="hero-desc">Setting up automated journeys and technical systems that support your growth.</p>
-            <div style="margin-top: 2rem;">
-                <a href="/#inquiry" class="hero-btn">Get Started</a>
+    <section class="px-6 pt-12 md:pt-16 pb-16 md:pb-24 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <div class="md:w-1/2 text-center md:text-left">
+            <span class="text-[#3B0B45] dark:text-purple-400 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Sales Funnels • Digital Automations • Systems Architect</span>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-[#3B0B45] dark:text-white leading-tight">Run your business. <br><span class="italic font-light text-slate-400 dark:text-slate-400 text-3xl sm:text-4xl md:text-6xl">I'll handle the tech.</span></h1>
+            <p class="mt-6 md:mt-8 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-md leading-relaxed mx-auto md:mx-0">Setting up automated journeys and technical systems that support your growth.</p>
+            <div class="mt-8 md:mt-10">
+                <a href="/#inquiry" class="w-full sm:w-auto bg-[#3B0B45] text-white px-10 py-4 rounded-sm font-bold shadow-xl hover:-translate-y-1 transition-all uppercase tracking-widest text-xs inline-block text-center">Get Started</a>
             </div>
         </div>
-        <div class="hero-image-wrapper">
-            <img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa5eda618c8d431817af4a.jpg" class="hero-img" alt="Sandra - Systems Architect">
+        <div class="md:w-1/2 w-full max-w-[450px]">
+            <img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa5eda618c8d431817af4a.jpg" class="rounded-[2.5rem] md:rounded-[3rem] shadow-lg w-full h-auto object-cover" alt="Sandra - Systems Architect">
         </div>
     </section>
 
     <!-- ABOUT / HOW I HELP -->
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <div class="about-text-col">
-                <div>
-                    <h2 class="about-heading-sub">A Partner for your Business</h2>
-                    <h3 class="about-heading-main">Setting you up for success from day one.</h3>
+    <section id="about" class="py-16 md:py-24 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-6 text-slate-500 dark:text-slate-400 leading-relaxed text-base md:text-lg text-center md:text-left">
+                <div class="space-y-2">
+                    <h2 class="text-xs md:text-sm font-bold tracking-[0.4em] text-slate-400 uppercase">A Partner for your Business</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white leading-tight">Setting you up for success from day one.</h3>
                 </div>
                 <p>Hi, I’m Sandra, and I partner with founders to bridge the gap between where their business is now and where they want to scale.</p>
-                <p>I help you cut through the noise. Whether it’s streamlining how you keep track of your clients or transitioning your business to the right tools for your specific journey, I’m here to make the "technical stuff" easy.</p>
+                <p>I help you cut through the noise. Whether it’s streamlining how you keep track of your clients or transitioning your business to the right tools for your specific journey, I'm here to make the "technical stuff" easy.</p>
             </div>
-            <div class="process-grid">
-                <div class="process-box">
-                    <span class="step-title">01. Listen</span>
-                    <p class="step-desc">We talk about your goals and what you need help with.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">01. Listen</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">We talk about your goals and what you need help with.</p>
                 </div>
-                <div class="process-box">
-                    <span class="step-title">02. Plan</span>
-                    <p class="step-desc">Together, I help you identify the tools that fit your unique workflow.</p>
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">02. Plan</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">Together, I help you identify the tools that fit your unique workflow.</p>
                 </div>
-                <div class="process-box">
-                    <span class="step-title">03. Build</span>
-                    <p class="step-desc">I set everything up so it runs smoothly on its own.</p>
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">03. Build</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">I set everything up so it runs smoothly on its own.</p>
                 </div>
-                <div class="process-box">
-                    <span class="step-title">04. Support</span>
-                    <p class="step-desc">I'm here to help as your systems and business grow.</p>
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">04. Support</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">I'm here to help as your systems and business grow.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SOLUTIONS GRID -->
-    <section id="solutions" class="solutions-section">
-        <div class="solutions-container">
-            <h2 class="solutions-title">The Solutions.</h2>
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <h3>Business Systems</h3>
-                    <p>Strategic implementation and platform setup to create a cohesive operational backbone.</p>
+    <section id="solutions" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800/50 border-y border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-[#3B0B45] dark:text-white mb-12 md:mb-20 uppercase tracking-tighter">The Solutions.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Business Systems</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Strategic implementation and platform setup to create a cohesive operational backbone.</p>
                 </div>
-                <div class="solution-card">
-                    <h3>Data Migration</h3>
-                    <p>Moving historical data and workflows between platforms with zero downtime or loss.</p>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Data Migration</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Moving historical data and workflows between platforms with zero downtime or loss.</p>
                 </div>
-                <div class="solution-card">
-                    <h3>Sales Funnels</h3>
-                    <p>High-converting landing pages and automated journeys that turn visitors into clients.</p>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Sales Funnels</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">High-converting landing pages and automated journeys that turn visitors into clients.</p>
                 </div>
-                <div class="solution-card">
-                    <h3>Automations</h3>
-                    <p>Connecting your CRM and website for sophisticated, behavioral marketing workflows.</p>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Automations</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Connecting your CRM and website for sophisticated, behavioral marketing workflows.</p>
                 </div>
-                <div class="solution-card">
-                    <h3>Visibility & SEO</h3>
-                    <p>Optimizing your Google presence and search rankings to ensure you are found easily.</p>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Visibility & SEO</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Optimizing your Google presence and search rankings to ensure you are found easily.</p>
                 </div>
-                <div class="solution-card">
-                    <h3>Reputation</h3>
-                    <p>Automated review generation to build authority and social proof on autopilot.</p>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Reputation</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Automated review generation to build authority and social proof on autopilot.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- INQUIRY ANCHOR SECTION -->
-    <section id="inquiry" class="inquiry-section">
-        <div class="inquiry-container" id="inquiry-main-container">
-            <div id="dynamic-content" class="fade-in">
-                <div class="inquiry-header">
-                    <h2>Let's Get To Work.</h2>
-                    <p>Submit your details below to get started.</p>
-                </div>
-                <form id="custom-sandra-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div class="form-grid-2">
-                        <div>
-                            <label class="custom-label" for="c-name">Full Name *</label>
-                            <input type="text" id="c-name" name="name" class="clean-input" required placeholder="Full Name">
-                        </div>
-                        <div>
-                            <label class="custom-label" for="c-phone">Phone Number *</label>
-                            <input type="tel" id="c-phone" name="phone" class="clean-input" required placeholder="(555) 555-5555">
-                        </div>
-                    </div>
-                    
-                    <div class="form-grid-2">
-                        <div>
-                            <label class="custom-label" for="c-email">Email Address *</label>
-                            <input type="email" id="c-email" name="email" class="clean-input" required placeholder="email@example.com">
-                        </div>
-                        <div>
-                            <label class="custom-label" for="c-company">Company Name</label>
-                            <input type="text" id="c-company" name="company" class="clean-input" placeholder="Company / Organization (Optional)">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="custom-label" for="c-message">Message *</label>
-                        <textarea id="c-message" name="message" rows="4" class="clean-input" required placeholder="How can I help you grow?"></textarea>
-                    </div>
-
-                    <!-- Cloudflare Turnstile Widget -->
-                    <div class="cf-turnstile" style="margin: 0.5rem 0;" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
-
-                    <button type="submit" id="submit-btn" class="form-submit-btn">Send Message</button>
-                </form>
+<section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
+    <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
+        <div id="dynamic-content" class="fade-in">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-4">Let's Get To Work.</h2>
+                <p class="text-slate-400 italic text-base md:text-lg block">Submit your details below to get started.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer-block">
-        <div class="footer-container">
-            <div class="footer-flex">
-                <div class="footer-brand">
-                    <a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="footer-logo" alt="Solutions by Sandra"></a>
-                    <a href="mailto:sandra@solutionsbysandra.com" class="footer-email">sandra@solutionsbysandra.com</a>
+            <form id="custom-sandra-form" class="space-y-8 md:space-y-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-name">Full Name *</label>
+                        <input type="text" id="c-name" name="name" class="clean-input dark:text-white" required placeholder="Full Name">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-phone">Phone Number *</label>
+                        <input type="tel" id="c-phone" name="phone" class="clean-input dark:text-white" required placeholder="(555) 555-5555">
+                    </div>
                 </div>
-                <div class="footer-copy">&#169; 2026 Solutions by Sandra</div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-email">Email Address *</label>
+                        <input type="email" id="c-email" name="email" class="clean-input dark:text-white" required placeholder="email@example.com">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-company">Company Name</label>
+                        <input type="text" id="c-company" name="company" class="clean-input dark:text-white" placeholder="Company / Organization (Optional)">
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="custom-label" for="c-message">Message *</label>
+                    <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
+                </div>
+
+                <!-- Cloudflare Turnstile Widget -->
+                <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>    
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 pt-6">
+                <div class="flex flex-col items-center md:items-start">
+                    <a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="w-48 md:w-64 mb-3" alt="Solutions by Sandra"></a>
+                    <a href="mailto:sandra@solutionsbysandra.com" class="text-xs font-bold text-[#3B0B45] dark:text-purple-400 uppercase tracking-[0.2em]">sandra@solutionsbysandra.com</a>
+                </div>
+                <div class="text-xs text-slate-400 uppercase tracking-widest">&#169; 2026 Solutions by Sandra</div>
             </div>
         </div>
     </footer>
@@ -370,41 +225,47 @@
         const email = document.getElementById('c-email').value.trim();
         const phoneVal = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
-        const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || '';
 
-        const payloadObj = {
+        const formData = {
             First_Name: firstName,
             Last_Name: lastName,
             Company: companyName,
             Email: email,
+            Mobile: phoneVal,
             Phone: phoneVal,
             Description: message,
-            Lead_Source: 'Website',
-            'Lead Source': 'Website',
-            'cf-turnstile-response': turnstileToken
+            'First Name': firstName,
+            'Last Name': lastName,
+            name: fullName,
+            firstName: firstName,
+            lastName: lastName,
+            first_name: firstName,
+            last_name: lastName,
+            company: companyName,
+            email: email,
+            mobile: phoneVal,
+            phone: phoneVal,
+            message: message,
+            description: message,
+            'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
 
         const workerEndpoint = 'https://zohoform.solutionsbysandra.workers.dev/';
 
         try {
-            let res = await fetch(workerEndpoint, {
+            const res = await fetch(workerEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payloadObj)
+                body: JSON.stringify(formData)
             });
 
-            if (!res.ok) {
-                const params = new URLSearchParams(payloadObj);
-                res = await fetch(workerEndpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: params.toString()
-                });
-            }
-
+            // If the response is ok or returns JSON success, show success state
             if (res.ok) {
                 showSuccessState();
             } else {
+                // Try reading error text if possible, but still handle gracefully
+                const errText = await res.text().catch(() => '');
+                console.error('Worker returned error:', errText);
                 alert('Something went wrong. Please try submitting again.');
                 submitBtn.disabled = false;
                 submitBtn.innerText = 'SEND MESSAGE';
@@ -420,17 +281,13 @@
     function showSuccessState() {
         const container = document.getElementById('dynamic-content');
         container.innerHTML = `
-            <div style="text-align: center; padding: 2.5rem 0; display: flex; flex-direction: column; gap: 1.5rem;" class="fade-in">
-                <div style="display: inline-flex; align-items: center; justify-content: center; width: 4rem; height: 4rem; background: #3B0B45; color: white; border-radius: 9999px; margin: 0 auto; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
-                    <i class="fa-solid fa-check" style="font-size: 1.5rem;"></i>
+            <div class="text-center py-16 space-y-6 fade-in">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-[#3B0B45] text-white rounded-full mb-4 shadow-lg">
+                    <i class="fa-solid fa-check text-2xl"></i>
                 </div>
-                <h3 style="font-size: 2.25rem; font-weight: 700; color: #3B0B45;">Message Received!</h3>
-                <p style="color: #475569; font-size: 1.125rem; max-width: 28rem; margin: 0 auto;">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
+                <h3 class="text-3xl md:text-4xl font-bold text-[#3B0B45] dark:text-white">Message Received!</h3>
+                <p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
             </div>
         `;
-
-        document.getElementById('inquiry-main-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
-</body>
-</html>
