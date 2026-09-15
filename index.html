@@ -214,7 +214,6 @@
         submitBtn.disabled = true;
         submitBtn.innerText = 'SENDING...';
 
-        // Extract typed values
         const fullName = document.getElementById('c-name').value.trim();
         const nameParts = fullName.split(' ');
         const firstName = nameParts[0] || fullName;
@@ -227,45 +226,39 @@
         const email = document.getElementById('c-email').value.trim();
         const phoneVal = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
+        const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || '';
 
-        // Pass all field key variants so Zoho API, Worker, and Webforms receive data
-        const formData = {
-            // Zoho API Keys
+        const payloadObj = {
             First_Name: firstName,
             Last_Name: lastName,
             Company: companyName,
             Email: email,
             Phone: phoneVal,
             Description: message,
-
-            // Zoho Web-to-Lead Keys
-            'First Name': firstName,
-            'Last Name': lastName,
-
-            // Generic / Worker Fallbacks
-            name: fullName,
-            firstName: firstName,
-            lastName: lastName,
-            first_name: firstName,
-            last_name: lastName,
-            company: companyName,
-            email: email,
-            phone: phoneVal,
-            message: message,
-            description: message,
-
-            // Security Token
-            'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
+            Lead_Source: 'Website',
+            'Lead Source': 'Website',
+            'cf-turnstile-response': turnstileToken
         };
 
         const workerEndpoint = 'https://zohoform.solutionsbysandra.workers.dev/';
 
         try {
-            const res = await fetch(workerEndpoint, {
+            // Attempt 1: Send as JSON
+            let res = await fetch(workerEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payloadObj)
             });
+
+            // Attempt 2: Fallback to Form URL-Encoded if worker fails JSON parsing
+            if (!res.ok) {
+                const params = new URLSearchParams(payloadObj);
+                res = await fetch(workerEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString()
+                });
+            }
 
             if (res.ok) {
                 showSuccessState();
@@ -294,7 +287,6 @@
             </div>
         `;
 
-        // Smoothly scroll and center the success message on the screen
         document.getElementById('inquiry-main-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
