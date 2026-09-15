@@ -226,6 +226,7 @@
         const phoneVal = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
 
+        // Standardized payload matching your form field names and backend expectations
         const formData = {
             First_Name: firstName,
             Last_Name: lastName,
@@ -233,20 +234,8 @@
             Email: email,
             Phone: phoneVal,
             Mobile: phoneVal,
+            Lead_Source: 'Website',
             Description: message,
-            'First Name': firstName,
-            'Last Name': lastName,
-            name: fullName,
-            firstName: firstName,
-            lastName: lastName,
-            first_name: firstName,
-            last_name: lastName,
-            company: companyName,
-            email: email,
-            phone: phoneVal,
-            mobile: phoneVal,
-            message: message,
-            description: message,
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
 
@@ -259,11 +248,12 @@
                 body: JSON.stringify(formData)
             });
 
-            if (res.ok) {
+            const result = await res.json().catch(() => ({}));
+
+            if (res.ok && result.success !== false) {
                 showSuccessState();
             } else {
-                const errText = await res.text().catch(() => '');
-                console.error('Worker returned error:', errText);
+                console.error('Worker returned error:', result);
                 alert('Something went wrong. Please try submitting again.');
                 submitBtn.disabled = false;
                 submitBtn.innerText = 'SEND MESSAGE';
@@ -287,7 +277,6 @@
                 <p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
             </div>
         `;
-        // Ensures the whole success state is cleanly scrolled into view and fully visible
         document.getElementById('inquiry-main-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
