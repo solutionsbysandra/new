@@ -214,11 +214,23 @@
         submitBtn.disabled = true;
         submitBtn.innerText = 'SENDING...';
 
+        // Parse Full Name into First Name & Last Name for Zoho
+        const fullName = document.getElementById('c-name').value.trim();
+        const nameParts = fullName.split(' ');
+        const firstName = nameParts[0] || fullName;
+        const lastName = nameParts.slice(1).join(' ') || 'N/A';
+
+        // Company fallback for Zoho requirement
+        const companyInput = document.getElementById('c-company').value.trim();
+        const companyName = companyInput !== '' ? companyInput : `${fullName} (Individual)`;
+
         const formData = {
-            name: document.getElementById('c-name').value,
-            phone: document.getElementById('c-phone').value,
-            email: document.getElementById('c-email').value,
-            message: document.getElementById('c-message').value,
+            First_Name: firstName,
+            Last_Name: lastName,
+            Company: companyName,
+            Email: document.getElementById('c-email').value,
+            Phone: document.getElementById('c-phone').value,
+            Description: document.getElementById('c-message').value,
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
 
