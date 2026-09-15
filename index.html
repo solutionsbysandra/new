@@ -231,8 +231,9 @@
             Last_Name: lastName,
             Company: companyName,
             Email: email,
-            Mobile: phoneVal,
             Phone: phoneVal,
+            Mobile: phoneVal,
+            Lead_Source: 'Website',
             Description: message,
             'First Name': firstName,
             'Last Name': lastName,
@@ -243,8 +244,10 @@
             last_name: lastName,
             company: companyName,
             email: email,
-            mobile: phoneVal,
             phone: phoneVal,
+            mobile: phoneVal,
+            leadSource: 'Website',
+            lead_source: 'Website',
             message: message,
             description: message,
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
@@ -259,11 +262,9 @@
                 body: JSON.stringify(formData)
             });
 
-            // If the response is ok or returns JSON success, show success state
             if (res.ok) {
                 showSuccessState();
             } else {
-                // Try reading error text if possible, but still handle gracefully
                 const errText = await res.text().catch(() => '');
                 console.error('Worker returned error:', errText);
                 alert('Something went wrong. Please try submitting again.');
@@ -289,5 +290,7 @@
                 <p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
             </div>
         `;
+        // Ensures the whole success state is cleanly scrolled into view and fully visible
+        document.getElementById('inquiry-main-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
