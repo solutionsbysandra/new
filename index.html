@@ -1,5 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Cloudflare Turnstile Script -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <style>
     #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
     html, body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
@@ -129,7 +132,7 @@
         </div>
     </section>
 
-    <!-- INQUIRY FORM -->
+    <!-- INQUIRY ANCHOR SECTION -->
     <section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
         <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
             <div id="dynamic-content" class="fade-in">
@@ -156,6 +159,10 @@
                         <label class="custom-label" for="c-message">Message</label>
                         <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
                     </div>
+
+                    <!-- Cloudflare Turnstile Widget -->
+                    <div class="cf-turnstile my-4" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+
                     <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
                 </form>
             </div>
@@ -192,7 +199,7 @@
         }
     }
 
-    document.getElementById('custom-sandra-form')?.addEventListener('submit', function(e) {
+    document.getElementById('custom-sandra-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
         const submitBtn = document.getElementById('submit-btn');
         submitBtn.disabled = true;
@@ -202,26 +209,30 @@
             name: document.getElementById('c-name').value,
             phone: document.getElementById('c-phone').value,
             email: document.getElementById('c-email').value,
-            message: document.getElementById('c-message').value
+            message: document.getElementById('c-message').value,
+            'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
 
-        const webhookUrl = 'YOUR_PIPELINE_PRO_WEBHOOK_URL';
+        // Replace with your Cloudflare Worker URL
+        const workerEndpoint = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev';
 
-        if (webhookUrl && webhookUrl !== 'YOUR_PIPELINE_PRO_WEBHOOK_URL') {
-            fetch(webhookUrl, {
+        try {
+            const res = await fetch(workerEndpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
-            }).then(response => {
-                showSuccessState();
-            }).catch(error => {
-                console.error('Submission error:', error);
-                showSuccessState();
             });
-        } else {
-            setTimeout(() => {
+
+            if (res.ok) {
                 showSuccessState();
-            }, 800);
+            } else {
+                alert('Something went wrong. Please try submitting again.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'SEND MESSAGE';
+            }
+        } catch (err) {
+            console.error('Submission error:', err);
+            showSuccessState();
         }
     });
 
