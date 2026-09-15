@@ -1,530 +1,304 @@
-Here is the complete, zero-dependency CSS/HTML for **`index.html`** formatted in the exact same style.
-
-This version replaces all Tailwind utilities with self-contained CSS, handles the fixed navigation header offset cleanly on scroll, and requires no build pipeline or CLI step on Netlify.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions by Sandra | Operations, Strategy & Business Systems</title>
+    <title>Solutions by Sandra | Sales Funnels • Digital Automations • Systems Architect</title>
 
+    <!-- Cloudflare Turnstile Script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Base Reset & Scroll Adjustments */
-        *, *::before, *::after { box-sizing: border-box; }
         #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
-
-        html { 
-            scroll-behavior: smooth; 
-            scroll-padding-top: 100px; /* Prevents sticky navbar from covering section titles */
-        }
-
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background-color: #FAFAFB; 
-            color: #1e293b; 
-            font-family: 'Inter', sans-serif; 
-            -webkit-font-smoothing: antialiased;
-        }
-
-        section[id], div[id] {
-            scroll-margin-top: 100px;
-        }
-
-        #sandra-site-wrapper { 
-            display: block; 
-            position: relative; 
-            z-index: 9999; 
-            width: 100%; 
-            min-height: 100vh; 
-        }
-
-        /* Reusable Container */
-        .container {
-            max-width: 80rem;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        /* Navigation Header */
-        .nav-header-block { 
-            background-color: #FFFFFF; 
-            border-bottom: 1px solid #edf2f7; 
-            padding: 1.25rem 0; 
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .site-logo { width: 14rem; height: auto; }
-        @media (min-width: 768px) { .site-logo { width: 20rem; } }
-
-        .nav-links {
-            display: none;
-            align-items: center;
-            gap: 2.5rem;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #334155;
-        }
-        @media (min-width: 768px) { .nav-links { display: flex; } }
-
-        .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
-        .nav-links a:hover { color: #3B0B45; }
-
-        .btn-talk {
-            background-color: #3B0B45;
-            color: #ffffff !important;
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-        .btn-talk:hover { opacity: 0.9; }
-
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #3B0B45;
-            cursor: pointer;
-        }
-        @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
-
-        #mobile-menu {
-            background-color: #ffffff;
-            border-top: 1px solid #f1f5f9;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            font-weight: 800;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            text-align: center;
-        }
-        #mobile-menu a { text-decoration: none; color: #334155; }
-        #mobile-menu.hidden { display: none; }
-
-        /* Hero Section */
-        .hero-section {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #3B0B45;
-            line-height: 1.15;
-            margin: 0 0 1.5rem 0;
-            max-width: 54rem;
-        }
-        @media (min-width: 768px) { .hero-title { font-size: 3.75rem; } }
-
-        .hero-subtitle {
-            font-size: 1.125rem;
-            color: #64748b;
-            max-width: 42rem;
-            line-height: 1.6;
-            margin: 0 0 2.5rem 0;
-        }
-        @media (min-width: 768px) { .hero-subtitle { font-size: 1.25rem; } }
-
-        .hero-cta-group {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-            justify-content: center;
-        }
-        @media (min-width: 640px) { .hero-cta-group { flex-direction: row; width: auto; } }
-
-        .btn-primary {
-            background-color: #3B0B45;
-            color: #ffffff;
-            font-weight: 700;
-            padding: 1rem 2.5rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            transition: opacity 0.2s;
-            text-align: center;
-        }
-        .btn-primary:hover { opacity: 0.9; }
-
-        .btn-secondary {
-            background-color: #ffffff;
-            color: #3B0B45;
-            border: 1px solid #e2e8f0;
-            font-weight: 700;
-            padding: 1rem 2.5rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            transition: border-color 0.2s;
-            text-align: center;
-        }
-        .btn-secondary:hover { border-color: #3B0B45; }
-
-        /* How I Help / About Section */
-        .section-padding {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: #3B0B45;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-
-        .section-heading {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin: 0 0 1.5rem 0;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
-
-        .about-text {
-            color: #475569;
-            font-size: 1.0625rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-box {
-            background-color: #ffffff;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .service-card {
-            background-color: #ffffff;
-            padding: 2.5rem;
-            border-radius: 2rem;
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -15px rgba(59, 11, 69, 0.08);
-            border-color: #3B0B45;
-        }
-
-        .service-icon {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 1rem;
-            background-color: #f5f3ff;
-            color: #3B0B45;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-title {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin: 0 0 1rem 0;
-        }
-
-        .service-desc {
-            color: #64748b;
-            font-size: 0.9375rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* Inquiry Section */
-        .inquiry-card {
-            background-color: #ffffff;
-            border-radius: 2.5rem;
-            border: 1px solid #f1f5f9;
-            padding: 3rem 2rem;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.03);
-            max-width: 48rem;
-            margin: 0 auto;
-        }
-        @media (min-width: 768px) { .inquiry-card { padding: 4rem; } }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #334155;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.75rem;
-            font-size: 0.9375rem;
-            outline: none;
-            font-family: inherit;
-        }
-        .form-input:focus, .form-textarea:focus {
-            border-color: #3B0B45;
-            background-color: #ffffff;
-        }
-
-        .form-submit-btn {
-            width: 100%;
-            background-color: #3B0B45;
-            color: #ffffff;
-            font-weight: 700;
-            padding: 1.125rem;
-            border-radius: 0.75rem;
-            border: none;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .form-submit-btn:hover { opacity: 0.9; }
-
-        /* Footer */
-        footer {
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-            border-top: 1px solid #e2e8f0;
-            background-color: #ffffff;
-        }
-
-        .footer-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-        @media (min-width: 768px) {
-            .footer-bottom { flex-direction: row; align-items: flex-start; }
-        }
-
-        .footer-email {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #3B0B45;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            text-decoration: none;
-        }
-
-        .footer-copy {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-        @media (min-width: 768px) { .footer-copy { margin-top: 0; } }
+        html, body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
+        #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; background: #FFFFFF; width: 100%; min-height: 100vh; }
+        .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 1rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
+        .process-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
+        .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
+        .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
+        .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
+        .clean-input:focus { outline: none; border-color: #3B0B45; }
+        .custom-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 0.4rem; }
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-<div id="sandra-site-wrapper">
-    <!-- NAVIGATION HEADER -->
-    <header class="nav-header-block">
-        <nav class="container nav-container">
-            <div>
-                <a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="site-logo" alt="Solutions by Sandra"></a>
+
+<div id="sandra-site-wrapper" class="text-slate-800 antialiased dark:bg-slate-900 dark:text-slate-100">
+    <!-- NAVIGATION -->
+    <header class="nav-header-block sticky top-0 z-[1000] dark:bg-slate-900 dark:border-slate-800">
+        <nav class="flex flex-row items-center justify-between px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+            <div class="flex items-center">
+                <a href="/">
+                    <img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="w-44 sm:w-56 md:w-80 h-auto" alt="Solutions by Sandra">
+                </a>
             </div>
-            <div class="nav-links">
-                <a href="#about">How I Help</a>
-                <a href="#solutions">Services</a>
-                <a href="/essentials">Essentials</a>
-                <a href="#inquiry" class="btn-talk">LET'S TALK</a>
+            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                <a href="/#about" class="hover:text-[#3B0B45] dark:hover:text-purple-400">How I Help</a>
+                <a href="/#solutions" class="hover:text-[#3B0B45] dark:hover:text-purple-400">Services</a>
+                <a href="/essentials" class="hover:text-[#3B0B45] dark:hover:text-purple-400">Essentials</a>
+                <a href="/#inquiry" class="bg-[#3B0B45] text-white px-8 py-3 rounded-full hover:opacity-90 transition-all uppercase">LET'S TALK</a>
             </div>
-            <button onclick="toggleMenu()" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <div class="md:hidden">
+                <button onclick="toggleMenu()" class="text-[#3B0B45] dark:text-purple-400 text-2xl p-2" aria-label="Toggle Mobile Menu">
+                    <i id="menu-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </nav>
-        <div id="mobile-menu" class="hidden">
-            <a href="#about" onclick="toggleMenu()">How I Help</a>
-            <a href="#solutions" onclick="toggleMenu()">Services</a>
-            <a href="/essentials" onclick="toggleMenu()">Essentials</a>
-            <a href="#inquiry" onclick="toggleMenu()" style="color: #3B0B45;">LET'S TALK</a>
+        
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden fixed inset-x-0 top-[73px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 p-8 flex flex-col space-y-6 font-extrabold text-lg uppercase tracking-widest text-slate-700 dark:text-slate-200 md:hidden text-center shadow-2xl z-[999]">
+            <a href="/#about" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45] dark:hover:text-purple-400">How I Help</a>
+            <a href="/#solutions" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45] dark:hover:text-purple-400">Services</a>
+            <a href="/essentials" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45] dark:hover:text-purple-400">Essentials</a>
+            <a href="/#inquiry" onclick="toggleMenu()" class="bg-[#3B0B45] text-white py-4 rounded-xl shadow-md text-sm">LET'S TALK</a>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="container hero-section">
-        <h1 class="hero-title">Operational Clarity & Business Systems That Scale.</h1>
-        <p class="hero-subtitle">Helping business leaders, organizations, and growing teams streamline workflows, optimize operations, and create seamless digital systems.</p>
-        <div class="hero-cta-group">
-            <a href="#inquiry" class="btn-primary">Work With Me</a>
-            <a href="/essentials" class="btn-secondary">Explore Essentials</a>
+    <section class="px-6 pt-12 md:pt-16 pb-16 md:pb-24 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <div class="md:w-1/2 text-center md:text-left">
+            <span class="text-[#3B0B45] dark:text-purple-400 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Sales Funnels • Digital Automations • Systems Architect</span>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-[#3B0B45] dark:text-white leading-tight">Run your business. <br><span class="italic font-light text-slate-400 dark:text-slate-400 text-3xl sm:text-4xl md:text-6xl">I'll handle the tech.</span></h1>
+            <p class="mt-6 md:mt-8 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-md leading-relaxed mx-auto md:mx-0">Setting up automated journeys and technical systems that support your growth.</p>
+            <div class="mt-8 md:mt-10">
+                <a href="/#inquiry" class="w-full sm:w-auto bg-[#3B0B45] text-white px-10 py-4 rounded-sm font-bold shadow-xl hover:-translate-y-1 transition-all uppercase tracking-widest text-xs inline-block text-center">Get Started</a>
+            </div>
+        </div>
+        <div class="md:w-1/2 w-full max-w-[450px]">
+            <img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa5eda618c8d431817af4a.jpg" class="rounded-[2.5rem] md:rounded-[3rem] shadow-lg w-full h-auto object-cover" alt="Sandra - Systems Architect">
         </div>
     </section>
 
-    <!-- HOW I HELP / ABOUT SECTION -->
-    <section id="about" class="container section-padding">
-        <div class="about-grid">
-            <div>
-                <span class="section-label">How I Help</span>
-                <h2 class="section-heading">Bringing structure and execution to complex environments.</h2>
-                <p class="about-text">Whether managing large-scale events, implementing software platforms, or organizing business logistics, I focus on turning fragmented processes into smooth, dependable workflows.</p>
-                <p class="about-text">My approach combines high-level strategic alignment with hands-on technical execution so your operations run efficiently behind the scenes.</p>
-            </div>
-            <div class="feature-box">
-                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
-                    <i class="fa-solid fa-check-circle" style="color: #3B0B45; font-size: 1.25rem; margin-top: 0.2rem;"></i>
-                    <div>
-                        <h4 style="margin: 0 0 0.25rem 0; font-weight: 700;">Workflow Optimization</h4>
-                        <p style="margin: 0; color: #64748b; font-size: 0.875rem;">Eliminate friction and standardize your internal procedures.</p>
-                    </div>
+    <!-- ABOUT / HOW I HELP -->
+    <section id="about" class="py-16 md:py-24 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-6 text-slate-500 dark:text-slate-400 leading-relaxed text-base md:text-lg text-center md:text-left">
+                <div class="space-y-2">
+                    <h2 class="text-xs md:text-sm font-bold tracking-[0.4em] text-slate-400 uppercase">A Partner for your Business</h2>
+                    <h3 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white leading-tight">Setting you up for success from day one.</h3>
                 </div>
-                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
-                    <i class="fa-solid fa-check-circle" style="color: #3B0B45; font-size: 1.25rem; margin-top: 0.2rem;"></i>
-                    <div>
-                        <h4 style="margin: 0 0 0.25rem 0; font-weight: 700;">Systems & Integration</h4>
-                        <p style="margin: 0; color: #64748b; font-size: 0.875rem;">Set up platforms like Zoho, CRMs, and custom databases.</p>
-                    </div>
+                <p>Hi, I’m Sandra, and I partner with founders to bridge the gap between where their business is now and where they want to scale.</p>
+                <p>I help you cut through the noise. Whether it’s streamlining how you keep track of your clients or transitioning your business to the right tools for your specific journey, I’m here to make the "technical stuff" easy.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">01. Listen</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">We talk about your goals and what you need help with.</p>
                 </div>
-                <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                    <i class="fa-solid fa-check-circle" style="color: #3B0B45; font-size: 1.25rem; margin-top: 0.2rem;"></i>
-                    <div>
-                        <h4 style="margin: 0 0 0.25rem 0; font-weight: 700;">Event & Project Execution</h4>
-                        <p style="margin: 0; color: #64748b; font-size: 0.875rem;">End-to-end logistics management for high-stakes initiatives.</p>
-                    </div>
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">02. Plan</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">Together, I help you identify the tools that fit your unique workflow.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section id="solutions" class="container section-padding" style="border-top: 1px solid #f1f5f9;">
-        <div style="text-align: center; max-width: 36rem; margin: 0 auto;">
-            <span class="section-label">Services</span>
-            <h2 class="section-heading">Tailored Operational Support</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
-                <h3 class="service-title">Operations Architecture</h3>
-                <p class="service-desc">Audit, design, and document business processes to improve team efficiency and reduce repetitive manual tasks.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                <h3 class="service-title">Systems Setup & CRM</h3>
-                <p class="service-desc">Implementation and configuration of business applications, automations, and customer management tools.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon"><i class="fa-solid fa-list-check"></i></div>
-                <h3 class="service-title">Project Management</h3>
-                <p class="service-desc">Structured oversight for key initiatives, ensuring timelines, communications, and deliverables stay on target.</p>
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">03. Build</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">I set everything up so it runs smoothly on its own.</p>
+                </div>
+                <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="step-title text-[#3B0B45] dark:text-purple-400 font-bold text-xs uppercase tracking-widest block">04. Support</span>
+                    <p class="step-desc text-sm text-slate-600 dark:text-slate-300 mt-2 font-medium">I'm here to help as your systems and business grow.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- INQUIRY FORM SECTION -->
-    <section id="inquiry" class="container section-padding">
-        <div class="inquiry-card">
-            <div style="text-align: center; margin-bottom: 2.5rem;">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-heading" style="margin-bottom: 0.5rem;">Let's Talk Business.</h2>
-                <p style="color: #64748b; margin: 0;">Fill out the form below to discuss how we can work together.</p>
+    <!-- SOLUTIONS GRID -->
+    <section id="solutions" class="py-16 md:py-24 bg-slate-50 dark:bg-slate-800/50 border-y border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-[#3B0B45] dark:text-white mb-12 md:mb-20 uppercase tracking-tighter">The Solutions.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Business Systems</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Strategic implementation and platform setup to create a cohesive operational backbone.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Data Migration</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Moving historical data and workflows between platforms with zero downtime or loss.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Sales Funnels</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">High-converting landing pages and automated journeys that turn visitors into clients.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Automations</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Connecting your CRM and website for sophisticated, behavioral marketing workflows.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Visibility & SEO</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Optimizing your Google presence and search rankings to ensure you are found easily.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Reputation</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Automated review generation to build authority and social proof on autopilot.</p>
+                </div>
             </div>
-            <form action="https://formspree.io/f/xbjnqkyv" method="POST">
-                <div class="form-group">
-                    <label class="form-label" for="name">Your Name</label>
-                    <input type="text" id="name" name="name" class="form-input" required placeholder="Jane Doe">
+        </div>
+    </section>
+
+    <!-- INQUIRY ANCHOR SECTION -->
+    <section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
+            <div id="dynamic-content" class="fade-in">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-4">Let's Get To Work.</h2>
+                    <p class="text-slate-400 italic text-base md:text-lg block">Submit your details below to get started.</p>
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-input" required placeholder="jane@example.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="message">How Can I Help?</label>
-                    <textarea id="message" name="message" rows="4" class="form-textarea" required placeholder="Tell me about your project or current operational challenges..."></textarea>
-                </div>
-                <button type="submit" class="form-submit-btn">Send Message</button>
-            </form>
+                <form id="custom-sandra-form" class="space-y-8 md:space-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-name">Full Name *</label>
+                            <input type="text" id="c-name" name="name" class="clean-input dark:text-white" required placeholder="Full Name">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-phone">Phone Number *</label>
+                            <input type="tel" id="c-phone" name="phone" class="clean-input dark:text-white" required placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-email">Email Address *</label>
+                            <input type="email" id="c-email" name="email" class="clean-input dark:text-white" required placeholder="email@example.com">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-company">Company Name</label>
+                            <input type="text" id="c-company" name="company" class="clean-input dark:text-white" placeholder="Company / Organization (Optional)">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-message">Message *</label>
+                        <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
+                    </div>
+
+                    <!-- Cloudflare Turnstile Widget -->
+                    <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-bottom">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" style="width: 14rem; margin-bottom: 0.75rem;" alt="Solutions by Sandra"></a>
-                    <a href="mailto:sandra@solutionsbysandra.com" class="footer-email">sandra@solutionsbysandra.com</a>
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 pt-6">
+                <div class="flex flex-col items-center md:items-start">
+                    <a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="w-48 md:w-64 mb-3" alt="Solutions by Sandra"></a>
+                    <a href="mailto:sandra@solutionsbysandra.com" class="text-xs font-bold text-[#3B0B45] dark:text-purple-400 uppercase tracking-[0.2em]">sandra@solutionsbysandra.com</a>
                 </div>
-                <div class="footer-copy">&#169; 2026 Solutions by Sandra</div>
+                <div class="text-xs text-slate-400 uppercase tracking-widest">&#169; 2026 Solutions by Sandra</div>
             </div>
         </div>
     </footer>
 </div>
 
 <script>
-    function toggleMenu() { 
-        document.getElementById('mobile-menu').classList.toggle('hidden'); 
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    }
+
+    document.getElementById('custom-sandra-form')?.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'SENDING...';
+
+        const fullName = document.getElementById('c-name').value.trim();
+        const nameParts = fullName.split(' ');
+        const firstName = nameParts[0] || fullName;
+        const lastName = nameParts.slice(1).join(' ') || fullName;
+
+        const companyElem = document.getElementById('c-company');
+        const companyInput = companyElem ? companyElem.value.trim() : '';
+        const companyName = companyInput !== '' ? companyInput : `${fullName} (Individual)`;
+
+        const email = document.getElementById('c-email').value.trim();
+        const phoneVal = document.getElementById('c-phone').value.trim();
+        const message = document.getElementById('c-message').value.trim();
+        const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || '';
+
+        const payloadObj = {
+            First_Name: firstName,
+            Last_Name: lastName,
+            Company: companyName,
+            Email: email,
+            Phone: phoneVal,
+            Description: message,
+            Lead_Source: 'Website',
+            'Lead Source': 'Website',
+            'cf-turnstile-response': turnstileToken
+        };
+
+        const workerEndpoint = 'https://zohoform.solutionsbysandra.workers.dev/';
+
+        try {
+            // Attempt 1: Send as JSON
+            let res = await fetch(workerEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payloadObj)
+            });
+
+            // Attempt 2: Fallback to Form URL-Encoded if worker fails JSON parsing
+            if (!res.ok) {
+                const params = new URLSearchParams(payloadObj);
+                res = await fetch(workerEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString()
+                });
+            }
+
+            if (res.ok) {
+                showSuccessState();
+            } else {
+                alert('Something went wrong. Please try submitting again.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'SEND MESSAGE';
+            }
+        } catch (err) {
+            console.error('Submission error:', err);
+            alert('Network error. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'SEND MESSAGE';
+        }
+    });
+
+    function showSuccessState() {
+        const container = document.getElementById('dynamic-content');
+        container.innerHTML = `
+            <div class="text-center py-6 sm:py-10 space-y-6 fade-in">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-[#3B0B45] text-white rounded-full mb-2 shadow-lg">
+                    <i class="fa-solid fa-check text-2xl"></i>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-bold text-[#3B0B45] dark:text-white">Message Received!</h3>
+                <p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
+            </div>
+        `;
+
+        document.getElementById('inquiry-main-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
 </body>
 </html>
-
-```
