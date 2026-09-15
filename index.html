@@ -1,26 +1,30 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Cloudflare Turnstile Script -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Cloudflare Turnstile Script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-<style>
-    #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
-    html, body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
-    #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; background: #FFFFFF; width: 100%; min-height: 100vh; }
-    .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 1rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
-    .process-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
-    .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
-    .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
-    .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
-    .clean-input:focus { outline: none; border-color: #3B0B45; }
-    .custom-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 0.4rem; }
-    .fade-in { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
+        html, body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
+        #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; background: #FFFFFF; width: 100%; min-height: 100vh; }
+        .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 1rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
+        .process-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
+        .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
+        .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
+        .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
+        .clean-input:focus { outline: none; border-color: #3B0B45; }
+        .custom-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 0.4rem; }
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white">
 
 <div id="sandra-site-wrapper" class="text-slate-800 antialiased dark:bg-slate-900 dark:text-slate-100">
     <!-- NAVIGATION -->
@@ -134,49 +138,50 @@
     </section>
 
     <!-- INQUIRY ANCHOR SECTION -->
-<section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
-    <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
-        <div id="dynamic-content" class="fade-in">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-4">Let's Get To Work.</h2>
-                <p class="text-slate-400 italic text-base md:text-lg block">Submit your details below to get started.</p>
+    <section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
+            <div id="dynamic-content" class="fade-in">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-4">Let's Get To Work.</h2>
+                    <p class="text-slate-400 italic text-base md:text-lg block">Submit your details below to get started.</p>
+                </div>
+                <form id="custom-sandra-form" class="space-y-8 md:space-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-name">Full Name *</label>
+                            <input type="text" id="c-name" name="name" class="clean-input dark:text-white" required placeholder="Full Name">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-phone">Phone Number *</label>
+                            <input type="tel" id="c-phone" name="phone" class="clean-input dark:text-white" required placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-email">Email Address *</label>
+                            <input type="email" id="c-email" name="email" class="clean-input dark:text-white" required placeholder="email@example.com">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-company">Company Name</label>
+                            <input type="text" id="c-company" name="company" class="clean-input dark:text-white" placeholder="Company / Organization (Optional)">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-message">Message *</label>
+                        <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
+                    </div>
+
+                    <!-- Cloudflare Turnstile Widget -->
+                    <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
+                </form>
             </div>
-            <form id="custom-sandra-form" class="space-y-8 md:space-y-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-name">Full Name *</label>
-                        <input type="text" id="c-name" name="name" class="clean-input dark:text-white" required placeholder="Full Name">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-phone">Phone Number *</label>
-                        <input type="tel" id="c-phone" name="phone" class="clean-input dark:text-white" required placeholder="(555) 555-5555">
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-email">Email Address *</label>
-                        <input type="email" id="c-email" name="email" class="clean-input dark:text-white" required placeholder="email@example.com">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-company">Company Name</label>
-                        <input type="text" id="c-company" name="company" class="clean-input dark:text-white" placeholder="Company / Organization (Optional)">
-                    </div>
-                </div>
-
-                <div class="space-y-1">
-                    <label class="custom-label" for="c-message">Message *</label>
-                    <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
-                </div>
-
-                <!-- Cloudflare Turnstile Widget -->
-                <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
-
-                <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
-            </form>
         </div>
-    </div>
-</section>    
+    </section>    
+    
     <!-- FOOTER -->
     <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
@@ -226,15 +231,13 @@
         const phoneVal = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
 
-        // Standardized payload matching your form field names and backend expectations
+        // Exact mapping from webpage fields to Zoho keys
         const formData = {
             First_Name: firstName,
             Last_Name: lastName,
             Company: companyName,
             Email: email,
             Phone: phoneVal,
-            Mobile: phoneVal,
-            Lead_Source: 'Website',
             Description: message,
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
@@ -280,3 +283,5 @@
         document.getElementById('inquiry-main-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
+</body>
+</html>
