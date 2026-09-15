@@ -14,6 +14,12 @@
         .process-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
         .process-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
         .process-box:hover .step-title, .process-box:hover .step-desc { color: #FFFFFF !important; }
+        
+        /* Solution Box Hover Effect */
+        .solution-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
+        .solution-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
+        .solution-box:hover h3, .solution-box:hover p { color: #FFFFFF !important; }
+
         .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
         .clean-input:focus { outline: none; border-color: #3B0B45; }
         .custom-label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 0.4rem; }
@@ -109,27 +115,27 @@
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
             <h2 class="text-3xl md:text-5xl font-extrabold text-[#3B0B45] dark:text-white mb-12 md:mb-20 uppercase tracking-tighter">The Solutions.</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="solution-box bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Business Systems</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Strategic implementation and platform setup to create a cohesive operational backbone.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="solution-box bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Data Migration</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Moving historical data and workflows between platforms with zero downtime or loss.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="solution-box bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Sales Funnels</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">High-converting landing pages and automated journeys that turn visitors into clients.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="solution-box bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Automations</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Connecting your CRM and website for sophisticated, behavioral marketing workflows.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="solution-box bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Visibility & SEO</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Optimizing your Google presence and search rankings to ensure you are found easily.</p>
                 </div>
-                <div class="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                <div class="solution-box bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] dark:text-purple-400 mb-4 uppercase tracking-widest">Reputation</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Automated review generation to build authority and social proof on autopilot.</p>
                 </div>
