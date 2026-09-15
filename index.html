@@ -1,6 +1,6 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <!-- Cloudflare Turnstile Script -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
@@ -77,7 +77,7 @@
                     <h3 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white leading-tight">Setting you up for success from day one.</h3>
                 </div>
                 <p>Hi, I’m Sandra, and I partner with founders to bridge the gap between where their business is now and where they want to scale.</p>
-                <p>I help you cut through the noise. Whether it’s streamlining how you keep track of your clients or transitioning your business to the right tools for your specific journey, I'm here to make the "technical stuff" easy.</p>
+                <p>I help you cut through the noise. Whether it’s streamlining how you keep track of your clients or transitioning your business to the right tools for your specific journey, I’m here to make the "technical stuff" easy.</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="process-box bg-slate-50 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -134,51 +134,50 @@
     </section>
 
     <!-- INQUIRY ANCHOR SECTION -->
-<!-- INQUIRY ANCHOR SECTION -->
-<!-- INQUIRY ANCHOR SECTION -->
-<section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
-    <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
-        <div id="dynamic-content" class="fade-in">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-4">Let's Get To Work.</h2>
-                <p class="text-slate-400 italic text-base md:text-lg block">Submit your details below to get started.</p>
+    <section id="inquiry" class="py-20 md:py-32 bg-white dark:bg-slate-900">
+        <div class="max-w-4xl mx-auto px-6" id="inquiry-main-container">
+            <div id="dynamic-content" class="fade-in">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-4">Let's Get To Work.</h2>
+                    <p class="text-slate-400 italic text-base md:text-lg block">Submit your details below to get started.</p>
+                </div>
+                <form id="custom-sandra-form" class="space-y-8 md:space-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-name">Full Name *</label>
+                            <input type="text" id="c-name" name="name" class="clean-input dark:text-white" required placeholder="Full Name">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-phone">Phone Number *</label>
+                            <input type="tel" id="c-phone" name="phone" class="clean-input dark:text-white" required placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-email">Email Address *</label>
+                            <input type="email" id="c-email" name="email" class="clean-input dark:text-white" required placeholder="email@example.com">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="custom-label" for="c-company">Company Name</label>
+                            <input type="text" id="c-company" name="company" class="clean-input dark:text-white" placeholder="Company / Organization (Optional)">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="custom-label" for="c-message">Message *</label>
+                        <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
+                    </div>
+
+                    <!-- Cloudflare Turnstile Widget -->
+                    <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
+
+                    <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
+                </form>
             </div>
-            <form id="custom-sandra-form" class="space-y-8 md:space-y-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-name">Full Name *</label>
-                        <input type="text" id="c-name" name="name" class="clean-input dark:text-white" required placeholder="Full Name">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-phone">Phone Number *</label>
-                        <input type="tel" id="c-phone" name="phone" class="clean-input dark:text-white" required placeholder="(555) 555-5555">
-                    </div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-email">Email Address *</label>
-                        <input type="email" id="c-email" name="email" class="clean-input dark:text-white" required placeholder="email@example.com">
-                    </div>
-                    <div class="space-y-1">
-                        <label class="custom-label" for="c-company">Company Name</label>
-                        <input type="text" id="c-company" name="company" class="clean-input dark:text-white" placeholder="Company / Organization (Optional)">
-                    </div>
-                </div>
-
-                <div class="space-y-1">
-                    <label class="custom-label" for="c-message">Message *</label>
-                    <textarea id="c-message" name="message" rows="4" class="clean-input dark:text-white" required placeholder="How can I help you grow?"></textarea>
-                </div>
-
-                <!-- Cloudflare Turnstile Widget -->
-                <div class="cf-turnstile my-4" data-sitekey="0x4AAAAAAE1EdOrsaOu_LiEO"></div>
-
-                <button type="submit" id="submit-btn" class="w-full bg-[#3B0B45] text-white font-bold py-5 rounded-sm uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-colors">Send Message</button>
-            </form>
         </div>
-    </div>
-</section>    
+    </section>
+
     <!-- FOOTER -->
     <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
@@ -215,41 +214,35 @@
         submitBtn.disabled = true;
         submitBtn.innerText = 'SENDING...';
 
-        // Parse Full Name into First Name & Last Name
+        // Extract typed values
         const fullName = document.getElementById('c-name').value.trim();
         const nameParts = fullName.split(' ');
         const firstName = nameParts[0] || fullName;
         const lastName = nameParts.slice(1).join(' ') || fullName;
 
-        // Company fallback for Zoho mandatory field
         const companyElem = document.getElementById('c-company');
         const companyInput = companyElem ? companyElem.value.trim() : '';
         const companyName = companyInput !== '' ? companyInput : `${fullName} (Individual)`;
 
         const email = document.getElementById('c-email').value.trim();
-        const phone = document.getElementById('c-phone').value.trim();
+        const phoneVal = document.getElementById('c-phone').value.trim();
         const message = document.getElementById('c-message').value.trim();
 
-        // Comprehensive payload covering Zoho REST API, Zoho Webform, and Worker formats
+        // Pass all field key variants so Zoho API, Worker, and Webforms receive data
         const formData = {
-            // Zoho CRM API Keys (Underscores)
+            // Zoho API Keys
             First_Name: firstName,
             Last_Name: lastName,
             Company: companyName,
             Email: email,
-            Phone: phone,
+            Phone: phoneVal,
             Description: message,
-            Lead_Source: 'Website',
 
-            // Web-to-Lead & Worker Fallbacks
-            'Lead Source': 'Website',
-            lead_source: 'Website',
-
-            // Zoho Web-to-Lead Keys (Spaces)
+            // Zoho Web-to-Lead Keys
             'First Name': firstName,
             'Last Name': lastName,
 
-            // Worker / Standard Form Fallbacks
+            // Generic / Worker Fallbacks
             name: fullName,
             firstName: firstName,
             lastName: lastName,
@@ -257,11 +250,11 @@
             last_name: lastName,
             company: companyName,
             email: email,
-            phone: phone,
+            phone: phoneVal,
             message: message,
             description: message,
 
-            // Security
+            // Security Token
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
         };
 
@@ -292,13 +285,16 @@
     function showSuccessState() {
         const container = document.getElementById('dynamic-content');
         container.innerHTML = `
-            <div class="text-center py-16 space-y-6 fade-in">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-[#3B0B45] text-white rounded-full mb-4 shadow-lg">
+            <div class="text-center py-6 sm:py-10 space-y-6 fade-in">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-[#3B0B45] text-white rounded-full mb-2 shadow-lg">
                     <i class="fa-solid fa-check text-2xl"></i>
                 </div>
                 <h3 class="text-3xl md:text-4xl font-bold text-[#3B0B45] dark:text-white">Message Received!</h3>
                 <p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
             </div>
         `;
+
+        // Smoothly scroll and center the success message on the screen
+        document.getElementById('inquiry-main-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
