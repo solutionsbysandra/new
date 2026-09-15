@@ -1,0 +1,220 @@
+<html><head><script>
+    function toggleMenu() { 
+        document.getElementById('mobile-menu').classList.toggle('hidden'); 
+    }
+
+    document.getElementById('custom-sandra-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // PASTE YOUR PIPELINE PRO INBOUND WEBHOOK URL BELOW
+        const webhookUrl = 'YOUR_PIPELINE_PRO_WEBHOOK_URL_HERE';
+        
+        const btn = document.getElementById('submit-btn'); 
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
+
+        const formData = {
+            name: document.getElementById('c-name').value,
+            phone: document.getElementById('c-phone').value,
+            email: document.getElementById('c-email').value,
+            message: document.getElementById('c-message').value,
+            source: 'Website Inquiry Form'
+        };
+
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            document.getElementById('dynamic-content').innerHTML = `
+                <div class="text-center py-24 bg-slate-50 dark:bg-slate-800 rounded-[3rem] border border-slate-100 dark:border-slate-700 shadow-sm fade-in">
+                    <h3 class="text-4xl md:text-5xl font-bold text-[#3B0B45] dark:text-white mb-6 leading-tight">Thank You! <br><span class="italic font-light text-slate-400 text-3xl">I've got it.</span></h3>
+                    <p class="text-slate-500 dark:text-slate-300 text-lg mb-12 max-w-sm mx-auto leading-relaxed">Your message has been delivered. I'll reach out within 24 hours.</p>
+                </div>
+            `;
+            window.scrollTo({ top: document.getElementById('inquiry').offsetTop - 50, behavior: 'smooth' });
+        })
+        .catch(error => {
+            console.error('Webhook Submit Error:', error);
+            btn.innerText = "SEND MESSAGE";
+            btn.disabled = false;
+            alert("There was an issue submitting your request. Please email sandra@solutionsbysandra.com directly.");
+        });
+    });
+</script>
+
+<style>
+    #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
+    html, body { margin: 0 !important; padding: 0 !important; background-color: #FAFAFB !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
+    #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; width: 100%; min-height: 100vh; }
+    .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 1.25rem 0; }
+    .fav-card { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); background: #ffffff; border: 1px solid #f1f5f9; display: flex; flex-direction: column; height: 100%; }
+    .fav-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -12px rgba(59, 11, 69, 0.1); border-color: #3B0B45; }
+    .icon-box { height: 64px; width: 64px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; border-radius: 16px; font-size: 1.75rem; }
+    .filter-btn { transition: all 0.3s ease; border: 1px solid #e2e8f0; cursor: pointer; }
+    .filter-btn.active { background-color: #3B0B45 !important; color: white !important; border-color: #3B0B45 !important; }
+    .bonus-badge { font-size: 0.7rem; font-weight: 800; padding: 4px 0; display: inline-block; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2rem; }
+    .hidden-item { display: none !important; }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sticky{position:sticky}.top-0{top:0px}.z-\[1000\]{z-index:1000}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-auto{height:auto}.w-48{width:12rem}.w-56{width:14rem}.w-full{width:100%}.max-w-7xl{max-width:80rem}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-row{flex-direction:row}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.space-x-10 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2.5rem * var(--tw-space-x-reverse));margin-left:calc(2.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.rounded-2xl{border-radius:1rem}.rounded-\[2\.5rem\]{border-radius:2.5rem}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-t{border-top-width:1px}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-50{--tw-border-opacity:1;border-color:rgb(248 250 252 / var(--tw-border-opacity, 1))}.bg-\[\#3B0B45\]{--tw-bg-opacity:1;background-color:rgb(59 11 69 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-10{padding:2.5rem}.p-4{padding:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-12{padding-bottom:3rem}.pl-4{padding-left:1rem}.pr-4{padding-right:1rem}.pt-10{padding-top:2.5rem}.pt-20{padding-top:5rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.uppercase{text-transform:uppercase}.leading-loose{line-height:2}.leading-relaxed{line-height:1.625}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-widest{letter-spacing:0.1em}.text-\[\#3B0B45\]{--tw-text-opacity:1;color:rgb(59 11 69 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:text-\[\#3B0B45\]:hover{--tw-text-opacity:1;color:rgb(59 11 69 / var(--tw-text-opacity, 1))}.hover\:opacity-90:hover{opacity:0.9}.focus\:border-\[\#3B0B45\]:focus{--tw-border-opacity:1;border-color:rgb(59 11 69 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 768px){.md\:mt-0{margin-top:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:w-64{width:16rem}.md\:w-80{width:20rem}.md\:w-96{width:24rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-start{align-items:flex-start}.md\:px-12{padding-left:3rem;padding-right:3rem}.md\:text-left{text-align:left}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}@media (prefers-color-scheme: dark){.dark\:border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.dark\:border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.dark\:bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.dark\:text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.dark\:text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.dark\:text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.dark\:text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.dark\:text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.dark\:text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.dark\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\:hover\:text-purple-400:hover{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}}</style></head><body><div id="sandra-site-wrapper" class="text-slate-800 antialiased dark:bg-slate-900 dark:text-slate-100">
+    <!-- NAVIGATION -->
+    <header class="nav-header-block sticky top-0 z-[1000] dark:bg-slate-900 dark:border-slate-800">
+        <nav class="flex flex-row items-center justify-between px-6 md:px-12 max-w-7xl mx-auto">
+            <div class="flex items-center"><a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="w-56 md:w-80 h-auto" alt="Solutions by Sandra"></a></div>
+            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                <a href="#about" class="hover:text-[#3B0B45] dark:hover:text-purple-400">How I Help</a>
+                <a href="#solutions" class="hover:text-[#3B0B45] dark:hover:text-purple-400">Services</a>
+                <a href="/essentials" class="hover:text-[#3B0B45] dark:hover:text-purple-400">Essentials</a>
+                <a href="#inquiry" class="bg-[#3B0B45] text-white px-8 py-3 rounded-full text-xs font-bold tracking-widest hover:opacity-90 transition-all uppercase">LET'S TALK</a>
+            </div>
+            <div class="md:hidden"><button onclick="toggleMenu()" class="text-[#3B0B45] dark:text-purple-400 text-2xl" aria-label="Toggle Mobile Menu"><i class="fa-solid fa-bars"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 p-10 flex flex-col space-y-8 font-extrabold text-xl uppercase tracking-widest text-slate-700 dark:text-slate-200 md:hidden text-center">
+            <a href="#about" onclick="toggleMenu()">How I Help</a>
+            <a href="#solutions" onclick="toggleMenu()">Services</a>
+            <a href="/essentials" onclick="toggleMenu()">Essentials</a>
+            <a href="#inquiry" onclick="toggleMenu()" class="text-[#3B0B45] dark:text-purple-400">LET'S TALK</a>
+        </div>
+    </header>
+
+    <section class="px-6 pt-20 pb-12 max-w-7xl mx-auto">
+        <h1 class="text-5xl font-extrabold text-[#3B0B45] dark:text-white mb-4 text-center md:text-left">The Essentials.</h1>
+        <p class="text-slate-500 dark:text-slate-400 text-lg mb-12 text-center md:text-left">Tools and services I personally use and recommend.</p>
+        <div class="flex flex-col md:flex-row gap-4 items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+            <input type="text" id="searchInput" placeholder="Search brands..." class="w-full md:w-96 pl-4 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:border-[#3B0B45]">
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button class="filter-btn active px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest" onclick="filterItems('all')">All</button>
+                <button class="filter-btn px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest dark:text-slate-300" onclick="filterItems('finance')">Finance</button>
+                <button class="filter-btn px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest dark:text-slate-300" onclick="filterItems('tech')">Tech</button>
+                <button class="filter-btn px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest dark:text-slate-300" onclick="filterItems('rewards')">Rewards</button>
+                <button class="filter-btn px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest dark:text-slate-300" onclick="filterItems('support')">Support</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-6 py-8 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favoritesGrid">
+            <!-- 1. Support -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="support" data-name="buy me a coffee">
+                <div class="icon-box" style="background: #FFFBE6; color: #D4A017;"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">Buy Me a Coffee</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">If you find any of these recommendations helpful as you grow your business, feel free to support my work. It's always appreciated!</p>
+                <div class="bonus-badge" style="color: #D4A017;">Support the Creator</div>
+                <a href="https://buymeacoffee.com/solutionsbysandra" target="_blank" rel="noopener" class="mt-auto w-full text-center text-slate-900 font-bold py-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md hover:opacity-90" style="background: #FFDD00;">Support Sandra →</a>
+            </div>
+
+            <!-- 2. Tech -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="tech" data-name="zoho">
+                <div class="icon-box" style="background: #E6F0FF; color: #0067FF;"><i class="fa-solid fa-cube"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">Zoho</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">The operating system for business. Run your entire company with a seamless suite of professional tools.</p>
+                <div class="bonus-badge" style="color: #0067FF;">Business Essential</div>
+                <a href="https://go.zoho.com/TuZJ" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md hover:opacity-90" style="background: #0067FF;">Explore Zoho →</a>
+            </div>
+
+            <!-- 3. Finance -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="finance" data-name="chase sapphire card">
+                <div class="icon-box" style="background: #EBF3FF; color: #117aca;"><i class="fa-solid fa-credit-card"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">Chase Sapphire</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">Earn up to 125,000 bonus points with the Reserve® or 75,000 with the Preferred®. The traveler's choice.</p>
+                <div class="bonus-badge" style="color: #117aca;">Up to 125K Bonus Points</div>
+                <a href="https://www.referyourchasecard.com/19u/0DVZ0HDS0C" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest shadow-md hover:opacity-90" style="background: #117aca;">Apply for Sapphire →</a>
+            </div>
+
+            <!-- 4. Finance -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="finance" data-name="wealthfront">
+                <div class="icon-box" style="background: #F0EFFF; color: #4840BB;"><i class="fa-solid fa-chart-line"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">Wealthfront</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">High-yield savings with zero fees and a boosted APY for 3 months. Ideal for business cash reserves.</p>
+                <div class="bonus-badge" style="color: #4840BB;">+0.75% APY Boost</div>
+                <a href="https://www.wealthfront.com/c/affiliates/invited/AFFD-WM8D-MGFF-CA3R" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest shadow-md hover:opacity-90" style="background: #4840BB;">Boost My APY →</a>
+            </div>
+
+            <!-- 5. Finance -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="finance" data-name="robinhood">
+                <div class="icon-box" style="background: #EBFBF4; color: #33D17A;"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">Robinhood</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">Commission-free investing. We both get a gift stock when you join using my link.</p>
+                <div class="bonus-badge" style="color: #33D17A;">Free Gift Stock</div>
+                <a href="https://join.robinhood.com/sandram1377" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest shadow-md hover:opacity-90" style="background: #33D17A;">Claim My Stock →</a>
+            </div>
+
+            <!-- 6. Rewards -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="rewards" data-name="rakuten">
+                <div class="icon-box" style="background: #F3EAFD; color: #8529cd;"><i class="fa-solid fa-bag-shopping"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">Rakuten</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">Cash back on almost everything. Spend $50, get $50 back immediately when you join.</p>
+                <div class="bonus-badge" style="color: #8529cd;">$50 Welcome Bonus</div>
+                <a href="https://www.rakuten.com/r/SANDRA22670?eeid=28187" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest shadow-md hover:opacity-90" style="background: #8529cd;">Get $50 Bonus →</a>
+            </div>
+
+            <!-- 7. Rewards -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="rewards" data-name="topcashback">
+                <div class="icon-box" style="background: #E6F7ED; color: #00b050;"><i class="fa-solid fa-tags"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">TopCashback</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">The most generous rewards site. They pass 100% of retailer commissions back to you for the highest rates.</p>
+                <div class="bonus-badge" style="color: #00b050;">Best Cash-Back Rates</div>
+                <a href="https://www.topcashback.com/ref/quecositalinda" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-md hover:opacity-90" style="background: #00b050;">Start Saving →</a>
+            </div>
+
+            <!-- 8. Tech -->
+            <div class="fav-card dark:bg-slate-800 dark:border-slate-700 p-10 rounded-[2.5rem]" data-category="tech" data-name="us mobile">
+                <div class="icon-box" style="background: #E3F2FD; color: #0047FF;"><i class="fa-solid fa-signal"></i></div>
+                <h3 class="text-2xl font-bold text-[#3B0B45] dark:text-white mb-2">US Mobile</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">The best 5G pricing for unlimited data. Reliable and affordable cellular service.</p>
+                <div class="bonus-badge" style="color: #0047FF;">$25 Credit Bonus</div>
+                <a href="https://www.usmobile.com/referrals?referrer=0048C03F&amp;name=Sandra&amp;utm_campaign=monster_referral" target="_blank" rel="noopener" class="mt-auto w-full text-center text-white font-bold py-4 rounded-xl text-xs uppercase tracking-widest shadow-md hover:opacity-90" style="background: #0047FF;">Claim $25 Credit →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH AFFILIATE DISCLOSURE -->
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center md:text-left">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-10 leading-loose">Disclosure: Links on this page are referral or affiliate links. I may earn a small bonus at no extra cost to you.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center border-t border-slate-50 dark:border-slate-800 pt-10">
+                <div class="flex flex-col items-center md:items-start">
+                    <a href="/"><img src="https://assets.cdn.filesafe.space/yT5C81Q0E9HRwEexXrvS/media/69aa8b72b2a2748a88b5b224.svg" class="w-48 md:w-64 mb-3" alt="Solutions by Sandra"></a>
+                    <a href="mailto:sandra@solutionsbysandra.com" class="text-xs font-bold text-[#3B0B45] dark:text-purple-400 uppercase tracking-[0.2em]">sandra@solutionsbysandra.com</a>
+                </div>
+                <div class="mt-8 md:mt-0 text-xs text-slate-400 uppercase tracking-widest">© 2026 Solutions by Sandra</div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    function toggleMenu() { 
+        document.getElementById('mobile-menu').classList.toggle('hidden'); 
+    }
+
+    function filterItems(category) { 
+        const items = document.querySelectorAll('.fav-card'); 
+        const buttons = document.querySelectorAll('.filter-btn'); 
+        buttons.forEach(btn => { 
+            btn.classList.remove('active'); 
+            if(btn.innerText.toLowerCase().includes(category)) btn.classList.add('active'); 
+        }); 
+        items.forEach(item => { 
+            if (category === 'all' || item.getAttribute('data-category') === category) { 
+                item.classList.remove('hidden-item'); 
+            } else { 
+                item.classList.add('hidden-item'); 
+            } 
+        }); 
+    }
+
+    document.getElementById('searchInput').addEventListener('keyup', function(e) { 
+        const q = e.target.value.toLowerCase(); 
+        const items = document.querySelectorAll('.fav-card'); 
+        items.forEach(item => { 
+            const name = item.getAttribute('data-name'); 
+            item.classList.toggle('hidden-item', !name.includes(q)); 
+        }); 
+    });
+</script></body></html>
