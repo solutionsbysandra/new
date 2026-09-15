@@ -233,7 +233,6 @@
             Email: email,
             Phone: phoneVal,
             Mobile: phoneVal,
-            Lead_Source: 'Website',
             Description: message,
             'First Name': firstName,
             'Last Name': lastName,
@@ -246,8 +245,8 @@
             email: email,
             phone: phoneVal,
             mobile: phoneVal,
-            leadSource: 'Website',
-            lead_source: 'Website',
+            Phone_Number: phoneVal,
+            phoneNumber: phoneVal,
             message: message,
             description: message,
             'cf-turnstile-response': document.querySelector('[name="cf-turnstile-response"]')?.value
@@ -290,7 +289,6 @@
                 <p class="text-slate-600 dark:text-slate-300 text-lg max-w-md mx-auto">Thank you for reaching out. I'll review your details and get back to you shortly.</p>
             </div>
         `;
-        // Ensures the whole success state is cleanly scrolled into view and fully visible
         document.getElementById('inquiry-main-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 </script>
