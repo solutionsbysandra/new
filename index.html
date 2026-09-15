@@ -128,7 +128,7 @@
             margin: 0; 
         }
 
-        /* Inquiry Section Styles Matching Your Theme */
+        /* Inquiry Section */
         .inquiry-section { padding: 4.5rem 0; background: white; }
         .inquiry-container { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
         .inquiry-header { text-align: center; margin-bottom: 2.5rem; }
@@ -277,7 +277,7 @@
         </div>
     </section>
 
-    <!-- INQUIRY ANCHOR SECTION WITH ZOHO FORM INTEGRATION -->
+    <!-- INQUIRY ANCHOR SECTION -->
     <section id="inquiry" class="inquiry-section">
         <div class="inquiry-container" id="inquiry-main-container">
             <div id="dynamic-content" class="fade-in">
@@ -285,47 +285,32 @@
                     <h2>Let's Get To Work.</h2>
                     <p>Submit your details below to get started.</p>
                 </div>
-                
-                <form id="webform7292668000000824013" name="WebToLeads7292668000000824013" accept-charset="UTF-8" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <input type="text" style="display:none;" name="xnQsjsdp" value="7bc702009573942132d4758bf309752360433820e975a5097e271cf432b61caf">
-                    <input type="hidden" name="zc_gad" id="zc_gad" value="">
-                    <input type="text" style="display:none;" name="xmIwtLD" value="e6d1b40dc36e35fd8932f1d1eac26db0fe86e45424d253a81b0b6e65908b0686aef60e6c93a3e10796c01b407533e4b6">
-                    <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
-                    <input type="text" style="display:none;" name="returnURL" value="null">
-                    <input type="text" style="display:none;" name="aG9uZXlwb3Q" value="">
-
+                <form id="custom-sandra-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
                     <div class="form-grid-2">
                         <div>
-                            <label class="custom-label" for="First_Name">First Name</label>
-                            <input type="text" id="First_Name" name="First Name" class="clean-input" placeholder="First Name" maxlength="40">
+                            <label class="custom-label" for="c-name">Full Name *</label>
+                            <input type="text" id="c-name" name="name" class="clean-input" required placeholder="Full Name">
                         </div>
                         <div>
-                            <label class="custom-label" for="Last_Name">Last Name *</label>
-                            <input type="text" id="Last_Name" name="Last Name" class="clean-input" required placeholder="Last Name" maxlength="80">
+                            <label class="custom-label" for="c-phone">Phone Number *</label>
+                            <input type="tel" id="c-phone" name="phone" class="clean-input" required placeholder="(555) 555-5555">
                         </div>
                     </div>
                     
                     <div class="form-grid-2">
                         <div>
-                            <label class="custom-label" for="Email">Email Address *</label>
-                            <input type="text" ftype="email" id="Email" name="Email" class="clean-input" required placeholder="email@example.com" maxlength="100">
+                            <label class="custom-label" for="c-email">Email Address *</label>
+                            <input type="email" id="c-email" name="email" class="clean-input" required placeholder="email@example.com">
                         </div>
                         <div>
-                            <label class="custom-label" for="Company">Company Name *</label>
-                            <input type="text" id="Company" name="Company" class="clean-input" required placeholder="Company / Organization" maxlength="200">
-                        </div>
-                    </div>
-
-                    <div class="form-grid-2" style="grid-template-columns: 1fr; margin-bottom: 0;">
-                        <div>
-                            <label class="custom-label" for="Mobile">Phone Number *</label>
-                            <input type="text" id="Mobile" name="Mobile" class="clean-input" required placeholder="(555) 555-5555" maxlength="30">
+                            <label class="custom-label" for="c-company">Company Name</label>
+                            <input type="text" id="c-company" name="company" class="clean-input" placeholder="Company / Organization (Optional)">
                         </div>
                     </div>
 
                     <div>
-                        <label class="custom-label" for="Description">Message *</label>
-                        <textarea id="Description" name="Description" rows="4" class="clean-input" required placeholder="How can I help you grow?"></textarea>
+                        <label class="custom-label" for="c-message">Message *</label>
+                        <textarea id="c-message" name="message" rows="4" class="clean-input" required placeholder="How can I help you grow?"></textarea>
                     </div>
 
                     <!-- Cloudflare Turnstile Widget -->
@@ -367,31 +352,69 @@
         }
     }
 
-    // Intercept Zoho Form Submission to prevent page redirection / document.write wipeouts
-    document.getElementById('webform7292668000000824013').addEventListener('submit', function(e) {
+    document.getElementById('custom-sandra-form')?.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
         const submitBtn = document.getElementById('submit-btn');
         submitBtn.disabled = true;
         submitBtn.innerText = 'SENDING...';
 
-        const formData = new FormData(this);
+        const fullName = document.getElementById('c-name').value.trim();
+        const nameParts = fullName.split(' ');
+        const firstName = nameParts[0] || fullName;
+        const lastName = nameParts.slice(1).join(' ') || fullName;
 
-        fetch('https://crm.zoho.com/crm/WebToLeadForm', {
-            method: 'POST',
-            body: formData,
-            cache: 'no-cache',
-            mode: 'no-cors' // Bypasses CORS blocking so the data securely reaches Zoho CRM
-        })
-        .then(() => {
-            // Since mode: 'no-cors' returns an opaque response, we safely trigger our success state view
-            showSuccessState();
-        })
-        .catch(err => {
+        const companyElem = document.getElementById('c-company');
+        const companyInput = companyElem ? companyElem.value.trim() : '';
+        const companyName = companyInput !== '' ? companyInput : `${fullName} (Individual)`;
+
+        const email = document.getElementById('c-email').value.trim();
+        const phoneVal = document.getElementById('c-phone').value.trim();
+        const message = document.getElementById('c-message').value.trim();
+        const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value || '';
+
+        const payloadObj = {
+            First_Name: firstName,
+            Last_Name: lastName,
+            Company: companyName,
+            Email: email,
+            Phone: phoneVal,
+            Description: message,
+            Lead_Source: 'Website',
+            'Lead Source': 'Website',
+            'cf-turnstile-response': turnstileToken
+        };
+
+        const workerEndpoint = 'https://zohoform.solutionsbysandra.workers.dev/';
+
+        try {
+            let res = await fetch(workerEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payloadObj)
+            });
+
+            if (!res.ok) {
+                const params = new URLSearchParams(payloadObj);
+                res = await fetch(workerEndpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: params.toString()
+                });
+            }
+
+            if (res.ok) {
+                showSuccessState();
+            } else {
+                alert('Something went wrong. Please try submitting again.');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'SEND MESSAGE';
+            }
+        } catch (err) {
             console.error('Submission error:', err);
-            // Even if network blocks visibility, no-cors successfully posts data. We show success or catch gracefully.
-            showSuccessState();
-        });
+            alert('Network error. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'SEND MESSAGE';
+        }
     });
 
     function showSuccessState() {
