@@ -99,11 +99,15 @@
         
         .solution-card { 
             background: white; 
-            padding: 1.35rem 2.25rem 1.85rem 2.25rem; 
+            padding: 2rem 2.25rem; 
             border-radius: 1.5rem; 
             border: 1px solid #f1f5f9; 
             box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); 
             text-align: left; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 160px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             cursor: default; 
         }
@@ -113,7 +117,7 @@
             font-size: 1.25rem; 
             font-weight: 700; 
             color: #3B0B45; 
-            margin-bottom: 0.4rem; 
+            margin-bottom: 0.5rem; 
             text-transform: uppercase; 
             letter-spacing: 0.1em; 
         }
