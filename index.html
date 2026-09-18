@@ -23,10 +23,10 @@
         .solution-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
         .solution-box:hover h3, .solution-box:hover p { color: #FFFFFF !important; }
 
-/* Add scroll padding so sticky header never covers section titles */
-#about, #solutions, #inquiry {
-    scroll-margin-top: 110px; /* Adjust this number if you want more or less space below your header */
-}
+        /* Scroll margin fix for anchors */
+        #about, #solutions, #inquiry {
+            scroll-margin-top: 110px;
+        }
 
         .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
         .clean-input:focus { outline: none; border-color: #3B0B45; }
@@ -121,7 +121,8 @@
     <!-- SOLUTIONS GRID -->
     <section id="solutions" class="py-16 md:py-24 bg-slate-50/50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-[#3B0B45] mb-12 md:mb-20 uppercase tracking-tighter">The Solutions.</h2>
+            <!-- Spacing reduced here from mb-12 md:mb-20 to mb-6 md:mb-10 -->
+            <h2 class="text-3xl md:text-5xl font-extrabold text-[#3B0B45] mb-6 md:mb-10 uppercase tracking-tighter">The Solutions.</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
                 <div class="solution-box bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-sm">
                     <h3 class="text-lg font-bold text-[#3B0B45] mb-4 uppercase tracking-widest">Business Systems</h3>
