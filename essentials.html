@@ -323,6 +323,11 @@
             letter-spacing: 0.1em;
         }
         @media (min-width: 768px) { .footer-copy { margin-top: 0; } }
+
+        /* Add scroll padding so sticky header never covers section titles */
+#about, #solutions, #inquiry {
+    scroll-margin-top: 110px; /* Adjust this number if you want more or less space below your header */
+}
     </style>
 </head>
 <body>
