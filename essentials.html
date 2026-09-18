@@ -3,124 +3,495 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://github.com/solutionsbysandra/new/blob/main/favicon.png?raw=true">
+    <title>The Essentials | Solutions by Sandra</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* Base Reset & Setup */
+        *, *::before, *::after { box-sizing: border-box; }
         #lp-pom-root, .section, .header, .footer, #header, #footer { display: none !important; }
-        html, body { margin: 0 !important; padding: 0 !important; background-color: #FFFFFF !important; font-family: 'Inter', sans-serif !important; scroll-behavior: smooth; }
-        #sandra-site-wrapper { display: block !important; position: relative; z-index: 9999; background: #FFFFFF; width: 100%; min-height: 100vh; }
-        .nav-header-block { background-color: #FFFFFF; border-bottom: 1px solid #edf2f7; padding: 1rem 0; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
         
-        .essential-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: default; }
-        .essential-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
-        .essential-box:hover h3, .essential-box:hover p { color: #FFFFFF !important; }
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: 110px; /* Offset for anchor scroll overlap */
+        }
+        
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: #FAFAFB; 
+            color: #1e293b; 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* Scroll margin fix for anchors */
-        #essentials-content {
+        section[id], div[id] {
             scroll-margin-top: 110px;
         }
 
-        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-white">
+        #sandra-site-wrapper { 
+            display: block; 
+            position: relative; 
+            z-index: 9999; 
+            width: 100%; 
+            min-height: 100vh; 
+        }
 
-<div id="sandra-site-wrapper" class="text-slate-800 antialiased bg-white">
-    <!-- NAVIGATION -->
-    <header class="nav-header-block sticky top-0 z-[1000] bg-white border-slate-200">
-        <nav class="flex flex-row items-center justify-between px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
-            <div class="flex items-center">
-                <a href="/">
-                    <img src="https://raw.githubusercontent.com/solutionsbysandra/new/8f59a954742c60e2ae5a95b7a495db5ddeaa5f24/Solutions%20by%20Sandra%20Horizontal%20Logo.svg" class="w-44 sm:w-56 md:w-80 h-auto" alt="Solutions by Sandra">
-                </a>
-            </div>
-            <div class="hidden md:flex items-center space-x-10 font-bold text-xs uppercase tracking-[0.2em] text-slate-700">
-                <a href="/#about" class="hover:text-[#3B0B45]">How I Help</a>
-                <a href="/#solutions" class="hover:text-[#3B0B45]">Services</a>
-                <a href="/essentials" class="text-[#3B0B45]">Essentials</a>
-                <a href="/#inquiry" class="bg-[#3B0B45] text-white px-8 py-3 rounded-full hover:opacity-90 transition-all uppercase">LET'S TALK</a>
-            </div>
-            <div class="md:hidden">
-                <button onclick="toggleMenu()" class="text-[#3B0B45] text-2xl p-2" aria-label="Toggle Mobile Menu">
-                    <i id="menu-icon" class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </nav>
+        /* Container Layout */
+        .container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        /* Navigation Header */
+        .nav-header-block { 
+            background-color: #FFFFFF; 
+            border-bottom: 1px solid #edf2f7; 
+            padding: 1.25rem 0; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden fixed inset-x-0 top-[73px] bg-white/95 backdrop-blur-md border-b border-slate-200 p-8 flex flex-col space-y-6 font-extrabold text-lg uppercase tracking-widest text-slate-700 md:hidden text-center shadow-2xl z-[999]">
-            <a href="/#about" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45]">How I Help</a>
-            <a href="/#solutions" onclick="toggleMenu()" class="py-2 hover:text-[#3B0B45]">Services</a>
-            <a href="/essentials" onclick="toggleMenu()" class="py-2 text-[#3B0B45]">Essentials</a>
-            <a href="/#inquiry" onclick="toggleMenu()" class="bg-[#3B0B45] text-white py-4 rounded-xl shadow-md text-sm">LET'S TALK</a>
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-logo { width: 14rem; height: auto; }
+        @media (min-width: 768px) { .site-logo { width: 20rem; } }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 2.5rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #334155;
+        }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+
+        .nav-links a { text-decoration: none; color: inherit; transition: color 0.2s; }
+        .nav-links a:hover { color: #3B0B45; }
+
+        .btn-talk {
+            background-color: #3B0B45;
+            color: #ffffff !important;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .btn-talk:hover { opacity: 0.9; }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #3B0B45;
+            cursor: pointer;
+        }
+        @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+
+        #mobile-menu {
+            background-color: #ffffff;
+            border-top: 1px solid #f1f5f9;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            font-weight: 800;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+        #mobile-menu a { text-decoration: none; color: #334155; }
+        #mobile-menu.hidden { display: none; }
+
+        /* Hero / Controls Section */
+        .hero-section {
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3B0B45;
+            margin: 0 0 1rem 0;
+            text-align: center;
+        }
+        .page-subtitle {
+            color: #64748b;
+            font-size: 1.125rem;
+            margin: 0 0 3rem 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .page-title, .page-subtitle { text-align: left; }
+        }
+
+        .controls-card {
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        @media (min-width: 768px) { .controls-card { flex-direction: row; } }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            outline: none;
+            font-size: 0.875rem;
+        }
+        .search-input:focus { border-color: #3B0B45; }
+        @media (min-width: 768px) { .search-input { width: 24rem; } }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .filter-btn { 
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background-color: transparent;
+            color: #64748b;
+            border: 1px solid #e2e8f0; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+        }
+        .filter-btn.active { 
+            background-color: #3B0B45 !important; 
+            color: #ffffff !important; 
+            border-color: #3B0B45 !important; 
+        }
+
+        /* Card Grid Layout */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        /* Individual Resource Cards */
+        .fav-card { 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            background: #ffffff; 
+            border: 1px solid #f1f5f9; 
+            border-radius: 2.5rem;
+            padding: 2.5rem;
+            display: flex; 
+            flex-direction: column; 
+            height: 100%; 
+        }
+        .fav-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 30px 60px -12px rgba(59, 11, 69, 0.1); 
+            border-color: #3B0B45; 
+        }
+
+        .icon-box { 
+            height: 64px; 
+            width: 64px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 2rem; 
+            border-radius: 16px; 
+            font-size: 1.75rem; 
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3B0B45;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .card-desc {
+            color: #64748b;
+            font-size: 0.875rem;
+            line-height: 1.625;
+            margin: 0 0 1rem 0;
+        }
+
+        .bonus-badge { 
+            font-size: 0.7rem; 
+            font-weight: 800; 
+            padding: 4px 0; 
+            display: inline-block; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            margin-bottom: 2rem; 
+        }
+
+        .card-btn {
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+            font-weight: 700;
+            padding: 1rem 0;
+            border-radius: 0.75rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .card-btn:hover { opacity: 0.9; }
+
+        .hidden-item { display: none !important; }
+
+        /* Footer */
+        footer {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            border-top: 1px solid #e2e8f0;
+            background-color: #ffffff;
+        }
+
+        .disclosure-text {
+            font-size: 0.625rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2.5rem;
+            line-height: 2;
+            text-align: center;
+        }
+        @media (min-width: 768px) { .disclosure-text { text-align: left; } }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #f8fafc;
+            padding-top: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom { flex-direction: row; align-items: flex-start; }
+        }
+
+        .footer-email {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #3B0B45;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+        }
+
+        .footer-copy {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        @media (min-width: 768px) { .footer-copy { margin-top: 0; } }
+
+        #about, #solutions, #inquiry {
+            scroll-margin-top: 110px;
+        }
+    </style>
+</head>
+<body>
+<div id="sandra-site-wrapper">
+    <!-- NAVIGATION -->
+    <header class="nav-header-block">
+        <nav class="container nav-container">
+            <div>
+                <a href="/"><img src="https://raw.githubusercontent.com/solutionsbysandra/new/8f59a954742c60e2ae5a95b7a495db5ddeaa5f24/Solutions%20by%20Sandra%20Horizontal%20Logo.svg" class="site-logo" alt="Solutions by Sandra"></a>
+            </div>
+            <div class="nav-links">
+                <a href="/#about">How I Help</a>
+                <a href="/#solutions">Services</a>
+                <a href="/essentials">Essentials</a>
+                <a href="/#inquiry" class="btn-talk">LET'S TALK</a>
+            </div>
+            <button onclick="toggleMenu()" class="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden">
+            <a href="/#about" onclick="toggleMenu()">How I Help</a>
+            <a href="/#solutions" onclick="toggleMenu()">Services</a>
+            <a href="/essentials" onclick="toggleMenu()">Essentials</a>
+            <a href="/#inquiry" onclick="toggleMenu()" style="color: #3B0B45;">LET'S TALK</a>
         </div>
     </header>
 
-    <!-- ESSENTIALS HERO / HEADER -->
-    <section class="px-6 pt-12 md:pt-16 pb-12 max-w-7xl mx-auto text-center">
-        <span class="text-[#3B0B45] font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Recommended Tools & Resources</span>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#3B0B45] leading-tight">Sandra's Essentials.</h1>
-        <p class="mt-4 text-lg text-slate-600 max-w-xl mx-auto leading-relaxed">The trusted software, platforms, and stack elements I use and recommend to build reliable business systems.</p>
-    </section>
-
-    <!-- ESSENTIALS GRID SECTION -->
-    <section id="essentials-content" class="py-12 md:py-16 bg-slate-50/50 border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-                <!-- Example Essential Item 1 -->
-                <div class="essential-box bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-sm">
-                    <h3 class="text-lg font-bold text-[#3B0B45] mb-4 uppercase tracking-widest">Platform & CRM</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">The core infrastructure solution for managing pipelines, contacts, and automated workflows seamlessly.</p>
-                </div>
-                <!-- Example Essential Item 2 -->
-                <div class="essential-box bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-sm">
-                    <h3 class="text-lg font-bold text-[#3B0B45] mb-4 uppercase tracking-widest">Hosting & Infrastructure</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">High-performance hosting providers ensuring fast loading speeds, reliability, and security.</p>
-                </div>
-                <!-- Example Essential Item 3 -->
-                <div class="essential-box bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-sm">
-                    <h3 class="text-lg font-bold text-[#3B0B45] mb-4 uppercase tracking-widest">Automation Connectors</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Middleware tools used to bridge data gaps between disparate software applications safely.</p>
-                </div>
+    <!-- HERO / FILTERS -->
+    <section class="container hero-section">
+        <h1 class="page-title">The Essentials.</h1>
+        <p class="page-subtitle">Tools and services I personally use and recommend.</p>
+        <div class="controls-card">
+            <input type="text" id="searchInput" placeholder="Search brands..." class="search-input">
+            <div class="filter-group">
+                <button class="filter-btn active" onclick="filterItems('all')">All</button>
+                <button class="filter-btn" onclick="filterItems('finance')">Finance</button>
+                <button class="filter-btn" onclick="filterItems('tech')">Tech</button>
+                <button class="filter-btn" onclick="filterItems('rewards')">Rewards</button>
+                <button class="filter-btn" onclick="filterItems('support')">Support</button>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="py-12 border-t border-slate-200 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 pt-6">
-                <div class="flex flex-col items-center md:items-start">
-                    <a href="/"><img src="https://raw.githubusercontent.com/solutionsbysandra/new/8f59a954742c60e2ae5a95b7a495db5ddeaa5f24/Solutions%20by%20Sandra%20Horizontal%20Logo.svg" class="w-48 md:w-64 mb-3" alt="Solutions by Sandra"></a>
-                    <a href="mailto:sandra@solutionsbysandra.com" class="text-xs font-bold text-[#3B0B45] uppercase tracking-[0.2em]">sandra@solutionsbysandra.com</a>
+    <!-- CARDS GRID -->
+    <section class="container" style="padding-bottom: 2rem;">
+        <div class="cards-grid" id="favoritesGrid">
+            <!-- 1. Support -->
+            <div class="fav-card" data-category="support" data-name="buy me a coffee">
+                <div class="icon-box" style="background: #FFFBE6; color: #D4A017;"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3 class="card-title">Buy Me a Coffee</h3>
+                <p class="card-desc">If you find any of these recommendations helpful as you grow your business, feel free to support my work. It's always appreciated!</p>
+                <div class="bonus-badge" style="color: #D4A017;">Support the Creator</div>
+                <a href="https://buymeacoffee.com/solutionsbysandra" target="_blank" rel="noopener" class="card-btn" style="background: #FFDD00; color: #0f172a;">Support Sandra &#8594;</a>
+            </div>
+
+            <!-- 2. Tech -->
+            <div class="fav-card" data-category="tech" data-name="zoho">
+                <div class="icon-box" style="background: #E6F0FF; color: #0067FF;"><i class="fa-solid fa-cube"></i></div>
+                <h3 class="card-title">Zoho</h3>
+                <p class="card-desc">The operating system for business. Run your entire company with a seamless suite of professional tools.</p>
+                <div class="bonus-badge" style="color: #0067FF;">Business Essential</div>
+                <a href="https://go.zoho.com/TuZJ" target="_blank" rel="noopener" class="card-btn" style="background: #0067FF; color: #ffffff;">Explore Zoho &#8594;</a>
+            </div>
+
+            <!-- 3. Finance -->
+            <div class="fav-card" data-category="finance" data-name="chase sapphire card">
+                <div class="icon-box" style="background: #EBF3FF; color: #117aca;"><i class="fa-solid fa-credit-card"></i></div>
+                <h3 class="card-title">Chase Sapphire</h3>
+                <p class="card-desc">Earn up to 125,000 bonus points with the Reserve® or 75,000 with the Preferred®. The traveler's choice.</p>
+                <div class="bonus-badge" style="color: #117aca;">Up to 125K Bonus Points</div>
+                <a href="https://www.referyourchasecard.com/19u/0DVZ0HDS0C" target="_blank" rel="noopener" class="card-btn" style="background: #117aca; color: #ffffff;">Apply for Sapphire &#8594;</a>
+            </div>
+
+            <!-- 4. Finance -->
+            <div class="fav-card" data-category="finance" data-name="wealthfront">
+                <div class="icon-box" style="background: #F0EFFF; color: #4840BB;"><i class="fa-solid fa-chart-line"></i></div>
+                <h3 class="card-title">Wealthfront</h3>
+                <p class="card-desc">High-yield savings with zero fees and a boosted APY for 3 months. Ideal for business cash reserves.</p>
+                <div class="bonus-badge" style="color: #4840BB;">+0.75% APY Boost</div>
+                <a href="https://www.wealthfront.com/c/affiliates/invited/AFFD-WM8D-MGFF-CA3R" target="_blank" rel="noopener" class="card-btn" style="background: #4840BB; color: #ffffff;">Boost My APY &#8594;</a>
+            </div>
+
+            <!-- 5. Finance -->
+            <div class="fav-card" data-category="finance" data-name="robinhood">
+                <div class="icon-box" style="background: #EBFBF4; color: #33D17A;"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <h3 class="card-title">Robinhood</h3>
+                <p class="card-desc">Commission-free investing. We both get a gift stock when you join using my link.</p>
+                <div class="bonus-badge" style="color: #33D17A;">Free Gift Stock</div>
+                <a href="https://join.robinhood.com/sandram1377" target="_blank" rel="noopener" class="card-btn" style="background: #33D17A; color: #ffffff;">Claim My Stock &#8594;</a>
+            </div>
+
+            <!-- 6. Rewards -->
+            <div class="fav-card" data-category="rewards" data-name="rakuten">
+                <div class="icon-box" style="background: #F3EAFD; color: #8529cd;"><i class="fa-solid fa-bag-shopping"></i></div>
+                <h3 class="card-title">Rakuten</h3>
+                <p class="card-desc">Cash back on almost everything. Spend $50, get $50 back immediately when you join.</p>
+                <div class="bonus-badge" style="color: #8529cd;">$50 Welcome Bonus</div>
+                <a href="https://www.rakuten.com/r/SANDRA22670?eeid=28187" target="_blank" rel="noopener" class="card-btn" style="background: #8529cd; color: #ffffff;">Get $50 Bonus &#8594;</a>
+            </div>
+
+            <!-- 7. Rewards -->
+            <div class="fav-card" data-category="rewards" data-name="topcashback">
+                <div class="icon-box" style="background: #E6F7ED; color: #00b050;"><i class="fa-solid fa-tags"></i></div>
+                <h3 class="card-title">TopCashback</h3>
+                <p class="card-desc">The most generous rewards site. They pass 100% of retailer commissions back to you for the highest rates.</p>
+                <div class="bonus-badge" style="color: #00b050;">Best Cash-Back Rates</div>
+                <a href="https://www.topcashback.com/ref/quecositalinda" target="_blank" rel="noopener" class="card-btn" style="background: #00b050; color: #ffffff;">Start Saving &#8594;</a>
+            </div>
+
+            <!-- 8. Tech -->
+            <div class="fav-card" data-category="tech" data-name="us mobile">
+                <div class="icon-box" style="background: #E3F2FD; color: #0047FF;"><i class="fa-solid fa-signal"></i></div>
+                <h3 class="card-title">US Mobile</h3>
+                <p class="card-desc">The best 5G pricing for unlimited data. Reliable and affordable cellular service.</p>
+                <div class="bonus-badge" style="color: #0047FF;">$30 Credit Bonus</div>
+                <a href="https://www.usmobile.com/referrals?referrer=0048C03F&name=Sandra&utm_campaign=monster_referral" target="_blank" rel="noopener" class="card-btn" style="background: #0047FF; color: #ffffff;">Claim $25 Credit &#8594;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH AFFILIATE DISCLOSURE -->
+    <footer>
+        <div class="container">
+            <p class="disclosure-text">Disclosure: Links on this page are referral or affiliate links. I may earn a small bonus at no extra cost to you.</p>
+            <div class="footer-bottom">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <a href="/"><img src="https://raw.githubusercontent.com/solutionsbysandra/new/8f59a954742c60e2ae5a95b7a495db5ddeaa5f24/Solutions%20by%20Sandra%20Horizontal%20Logo.svg" style="width: 14rem; margin-bottom: 0.75rem;" alt="Solutions by Sandra"></a>
+                    <a href="mailto:sandra@solutionsbysandra.com" class="footer-email">sandra@solutionsbysandra.com</a>
                 </div>
-                <div class="text-xs text-slate-400 uppercase tracking-widest">&#169; 2026 Solutions by Sandra</div>
+                <div class="footer-copy">&#169; 2026 Solutions by Sandra</div>
             </div>
         </div>
     </footer>
 </div>
 
 <script>
-    function toggleMenu() {
-        const menu = document.getElementById('mobile-menu');
-        const icon = document.getElementById('menu-icon');
-        
-        if (menu.classList.contains('hidden')) {
-            menu.classList.remove('hidden');
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-xmark');
-        } else {
-            menu.classList.add('hidden');
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }
+    function toggleMenu() { 
+        document.getElementById('mobile-menu').classList.toggle('hidden'); 
     }
+
+    function filterItems(category) { 
+        const items = document.querySelectorAll('.fav-card'); 
+        const buttons = document.querySelectorAll('.filter-btn'); 
+        buttons.forEach(btn => { 
+            btn.classList.remove('active'); 
+            if(btn.innerText.toLowerCase().includes(category)) btn.classList.add('active'); 
+        }); 
+        items.forEach(item => { 
+            if (category === 'all' || item.getAttribute('data-category') === category) { 
+                item.classList.remove('hidden-item'); 
+            } else { 
+                item.classList.add('hidden-item'); 
+            } 
+        }); 
+    }
+
+    document.getElementById('searchInput')?.addEventListener('keyup', function(e) { 
+        const q = e.target.value.toLowerCase(); 
+        const items = document.querySelectorAll('.fav-card'); 
+        items.forEach(item => { 
+            const name = item.getAttribute('data-name') || ''; 
+            item.classList.toggle('hidden-item', !name.includes(q)); 
+        }); 
+    });
 </script>
 </body>
 </html>
