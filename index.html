@@ -23,8 +23,10 @@
         .solution-box:hover { background-color: #3B0B45 !important; border-color: #3B0B45 !important; box-shadow: 0 20px 25px -5px rgba(59, 11, 69, 0.2) !important; transform: translateY(-2px); }
         .solution-box:hover h3, .solution-box:hover p { color: #FFFFFF !important; }
 
-        /* Fix for anchor overlap under sticky header */
-        #inquiry { scroll-margin-top: 100px; }
+/* Add scroll padding so sticky header never covers section titles */
+#about, #solutions, #inquiry {
+    scroll-margin-top: 110px; /* Adjust this number if you want more or less space below your header */
+}
 
         .clean-input { width: 100%; border-bottom: 2px solid #E2E8F0; background: transparent; padding: 1rem 0; font-size: 1rem; transition: border-color 0.3s; border-top: none; border-left: none; border-right: none; border-radius: 0; }
         .clean-input:focus { outline: none; border-color: #3B0B45; }
