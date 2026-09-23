@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mTap @ NJBIA WBLF 2026 Display</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        mtap: {
+                            purple: '#6366f1',
+                            darkPurple: '#4f46e5',
+                            accent: '#f59e0b',
+                            rose: '#f43f5e',
+                            navy: '#0f172a',
+                            gold: '#fbbf24'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0.0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Glowing & Backdrop Effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .dark-glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Print Optimized Styling */
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 0.5in;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-container {
+                box-shadow: none !important;
+                border: none !important;
+                background: white !important;
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+            }
+            .print-card {
+                border: 2px solid #e2e8f0 !important;
+                background: white !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+            .print-header {
+                color: #0f172a !important;
+            }
+            .qr-code-img canvas, .qr-code-img img {
+                max-width: 220px !important;
+                max-height: 220px !important;
+                margin: 0 auto !important;
+            }
+            .badge-print {
+                border: 1px solid #cbd5e1 !important;
+                color: #1e293b !important;
+                background: #f8fafc !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
+
+    <!-- Ambient Dynamic Background Gradients -->
+    <div class="fixed inset-0 pointer-events-none no-print overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/30 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-600/25 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:32px_32px] opacity-10"></div>
+    </div>
+
+    <!-- Top Action Bar / Controls (Hidden in Print Mode) -->
+    <header class="no-print z-50 sticky top-0 px-4 py-3 bg-slate-900/80 backdrop-blur-md border-b border-slate-800/80 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-amber-400 p-0.5 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-amber-300">m</i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold text-white tracking-wide leading-tight">mTap Display Hub</h1>
+                    <p class="text-xs text-slate-400">NJBIA WBLF 2026 Kiosk Mode</p>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2">
+                <!-- Direct URL Settings Button -->
+                <button onclick="toggleSettingsModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-gear text-indigo-400"></i>
+                    <span class="hidden sm:inline">Edit URLs</span>
+                </button>
+
+                <!-- Fullscreen Toggle -->
+                <button onclick="toggleFullscreen()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-medium text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-expand text-purple-400" id="fullscreenIcon"></i>
+                    <span class="hidden sm:inline" id="fullscreenText">Fullscreen Display</span>
+                </button>
+
+                <!-- Print Poster / PDF Export -->
+                <button onclick="triggerPrint()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-semibold text-xs transition shadow-md shadow-indigo-600/30 flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Print Poster / PDF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Display Section -->
+    <main class="relative z-10 flex-grow flex items-center justify-center p-4 md:p-8 print-container">
+        <div class="max-w-6xl w-full mx-auto space-y-8 my-auto">
+            
+            <!-- Event Hero Header -->
+            <div class="text-center space-y-3 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-indigo-500/30 shadow-md text-slate-300 text-xs font-semibold uppercase tracking-wider badge-print">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Official Networking Sponsor & Event Partner</span>
+                </div>
+                
+                <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight print-header">
+                    Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-amber-300">mTap</span> @ WBLF 2026
+                </h1>
+                
+                <p class="text-sm md:text-base text-slate-300 font-normal max-w-2xl mx-auto">
+                    NJBIA Women Business Leaders Forum | Connect seamlessly, share your digital business card, and get your personalized NFC smart card printed on the spot!
+                </p>
+            </div>
+
+            <!-- Two QR Code Display Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-5xl mx-auto">
+                
+                <!-- CARD 1: Learn More About mTap -->
+                <div class="glass-card print-card rounded-3xl p-6 md:p-8 flex flex-col justify-between text-slate-900 shadow-2xl relative overflow-hidden group hover:border-indigo-400/50 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-bl-full pointer-events-none"></div>
+                    
+                    <div>
+                        <!-- Header badge -->
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">
+                                <i class="fa-solid fa-circle-info"></i> Discover mTap
+                            </span>
+                            <span class="text-xs text-slate-600 font-semibold tracking-wide">Scan Code #1</span>
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-slate-900 mb-2">Learn More About mTap</h2>
+                        <p class="text-sm text-slate-800 mb-6 leading-relaxed">
+                            See how mTap revolutionizes modern networking, digital cards, and team contact sharing at WBLF 2026.
+                        </p>
+                    </div>
+
+                    <!-- QR Code & Link Area -->
+                    <div class="flex flex-col items-center justify-center space-y-4 my-2">
+                        <div class="p-4 bg-white rounded-2xl shadow-inner border border-slate-200 relative group-hover:scale-[1.02] transition-transform duration-300">
+                            <div id="qrcode1" class="qr-code-img flex items-center justify-center min-w-[200px] min-h-[200px]"></div>
+                        </div>
+
+                        <div class="text-center w-full">
+                            <a id="linkDisplay1" href="https://mtapnfc.com/wblf2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-indigo-700 hover:text-indigo-900 hover:underline break-all">
+                                <span>mtapnfc.com/wblf2026</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs no-print"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom CTA Banner -->
+                    <div class="mt-4 pt-4 border-t border-slate-200/80 text-center">
+                        <p class="text-xs font-medium text-slate-800 flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-camera text-indigo-600"></i> Scan with your phone's camera
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Create Custom NFC Card -->
+                <div class="glass-card print-card rounded-3xl p-6 md:p-8 flex flex-col justify-between text-slate-900 shadow-2xl relative overflow-hidden group border-2 border-amber-400/60 hover:border-amber-400 transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-bl-full pointer-events-none"></div>
+                    
+                    <div>
+                        <!-- Header badge -->
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300/50">
+                                <i class="fa-solid fa-bolt text-amber-600"></i> Free Custom Card
+                            </span>
+                            <span class="text-xs text-slate-600 font-semibold tracking-wide">Scan Code #2</span>
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-slate-900 mb-2">Create Your Custom NFC Card</h2>
+                        <p class="text-sm text-slate-800 mb-6 leading-relaxed">
+                            Fill out our quick form today. Give us a few minutes and we will <strong class="text-amber-800 underline decoration-amber-400 underline-offset-2">print your NFC card on the spot!</strong>
+                        </p>
+                    </div>
+
+                    <!-- QR Code & Link Area -->
+                    <div class="flex flex-col items-center justify-center space-y-4 my-2">
+                        <div class="p-4 bg-white rounded-2xl shadow-inner border border-slate-200 relative group-hover:scale-[1.02] transition-transform duration-300">
+                            <div id="qrcode2" class="qr-code-img flex items-center justify-center min-w-[200px] min-h-[200px]"></div>
+                        </div>
+
+                        <div class="text-center w-full">
+                            <a id="linkDisplay2" href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-amber-900 hover:text-amber-950 hover:underline break-all">
+                                <span id="linkText2">forms.google.com</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs no-print"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Highlight Banner -->
+                    <div class="mt-4 pt-4 border-t border-slate-200/80 text-center">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold">
+                            <i class="fa-solid fa-id-card text-amber-800"></i> Live On-site Card Printing Station
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Page Footer (Web Mode Only) -->
+    <footer class="no-print text-center py-4 text-xs text-slate-500 border-t border-slate-800/60 bg-slate-950">
+        <p>© 2026 mTap - All Rights Reserved. Designed for live interactive conference displays.</p>
+    </footer>
+
+    <!-- Settings Modal to customize URLs on the fly -->
+    <div id="settingsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden no-print">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-5 text-slate-200">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-indigo-400"></i> Configure QR Code Targets
+                </h3>
+                <button onclick="toggleSettingsModal()" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">
+                        Card 1 URL (Learn More mTap):
+                    </label>
+                    <input type="url" id="inputUrl1" value="https://mtapnfc.com/wblf2026" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500 text-xs font-mono">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">
+                        Card 2 URL (Custom Card Google Form):
+                    </label>
+                    <input type="url" id="inputUrl2" value="https://forms.google.com" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500 text-xs font-mono" placeholder="Paste your Google Form URL here">
+                    <p class="text-[11px] text-slate-400 mt-1">Paste your actual Google Form URL here for attendees to scan and complete.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-3 pt-3 border-t border-slate-800">
+                <button onclick="toggleSettingsModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-300">
+                    Cancel
+                </button>
+                <button onclick="saveAndGenerateQRs()" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-xs font-bold text-white shadow-md">
+                    Update Display & Regenerate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Default URLs
+        let url1 = "https://mtapnfc.com/wblf2026";
+        let url2 = "https://forms.google.com";
+
+        let qrcodeObj1 = null;
+        let qrcodeObj2 = null;
+
+        // Custom base64 or generated matrices matching WBLF mTap_2.png and Your Very Own NFC Card_2.png
+        window.onload = function () {
+            renderQRCodes();
+        };
+
+        function renderQRCodes() {
+            const container1 = document.getElementById("qrcode1");
+            const container2 = document.getElementById("qrcode2");
+            container1.innerHTML = "";
+            container2.innerHTML = "";
+
+            // Render QR Code 1 (WBLF mTap_2)
+            qrcodeObj1 = new QRCode(container1, {
+                text: url1,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // Render QR Code 2 (Your Very Own NFC Card_2)
+            qrcodeObj2 = new QRCode(container2, {
+                text: url2,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.Q
+            });
+
+            // Update display URLs
+            document.getElementById("linkDisplay1").href = url1;
+            document.getElementById("linkDisplay1").querySelector("span").innerText = truncateUrl(url1);
+
+            document.getElementById("linkDisplay2").href = url2;
+            document.getElementById("linkText2").innerText = truncateUrl(url2);
+        }
+
+        function truncateUrl(str) {
+            try {
+                const parsed = new URL(str);
+                let formatted = parsed.hostname + parsed.pathname;
+                if (formatted.length > 28) {
+                    return formatted.substring(0, 25) + '...';
+                }
+                return formatted;
+            } catch (e) {
+                return str.length > 28 ? str.substring(0, 25) + '...' : str;
+            }
+        }
+
+        function toggleSettingsModal() {
+            const modal = document.getElementById("settingsModal");
+            modal.classList.toggle("hidden");
+        }
+
+        function saveAndGenerateQRs() {
+            const val1 = document.getElementById("inputUrl1").value.trim();
+            const val2 = document.getElementById("inputUrl2").value.trim();
+
+            if (val1) url1 = val1;
+            if (val2) url2 = val2;
+
+            renderQRCodes();
+            toggleSettingsModal();
+        }
+
+        function toggleFullscreen() {
+            const icon = document.getElementById("fullscreenIcon");
+            const text = document.getElementById("fullscreenText");
+
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    icon.classList.remove("fa-expand");
+                    icon.classList.add("fa-compress");
+                    text.innerText = "Exit Fullscreen";
+                }).catch(err => {
+                    console.error("Error attempting to enable fullscreen:", err);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().then(() => {
+                        icon.classList.remove("fa-compress");
+                        icon.classList.add("fa-expand");
+                        text.innerText = "Fullscreen Display";
+                    });
+                }
+            }
+        }
+
+        function triggerPrint() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
