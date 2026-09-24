@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mTap | Elevate 2026 - Our Teams Global</title>
+    
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            brand: {
+                                purple: '#6366f1',
+                                violet: '#8b5cf6',
+                                teal: '#0ea5e9',
+                                dark: '#070b14',
+                                card: '#0f172a'
+                            }
+                        },
+                        fontFamily: {
+                            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+                        }
+                    }
+                }
+            };
+        }
+    </script>
+
+    <style>
+        /* Glassmorphism card surfaces */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .qr-wrapper {
+            box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Ambient floating glow */
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 0.35; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.03); }
+        }
+        .pulse-ambient {
+            animation: subtle-pulse 6s ease-in-out infinite;
+        }
+
+        /* Screen vs Print specific styles */
+        .print-only {
+            display: none !important;
+        }
+
+        /* Print Mode: Optimized for standard 8.5" x 11" portrait table acrylic frames */
+        @media print {
+            @page {
+                size: letter portrait;
+                margin: 0.35in;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #070b14 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .no-print,
+            .screen-only,
+            #toast {
+                display: none !important;
+            }
+
+            .print-only {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100vh;
+                max-height: 100vh;
+                box-sizing: border-box;
+                padding: 0.35in 0.35in 0.45in 0.35in;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#070b14] text-slate-100 min-h-full flex flex-col font-sans selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
+
+    <!-- Ambient glowing lights behind kiosk display -->
+    <div class="fixed inset-0 pointer-events-none no-print overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-[36rem] h-[36rem] bg-indigo-600/20 rounded-full blur-3xl pulse-ambient"></div>
+        <div class="absolute top-1/4 -right-40 w-[34rem] h-[34rem] bg-cyan-600/15 rounded-full blur-3xl pulse-ambient" style="animation-delay: 2s;"></div>
+        <div class="absolute -bottom-40 left-1/3 w-[30rem] h-[30rem] bg-purple-600/15 rounded-full blur-3xl pulse-ambient" style="animation-delay: 3s;"></div>
+    </div>
+
+    <!-- Top Floating Toolbar: Laptop Booth Station & Print Table Sign -->
+    <header class="no-print relative z-20 w-full px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
+        <!-- Brand + Event Partnership in Header -->
+        <div class="flex items-center space-x-3">
+            <img 
+                src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/White%20Logo%20800px%20with%20slogan.png" 
+                alt="mTap Logo" 
+                class="h-7 w-auto object-contain"
+                onerror="this.style.display='none'"
+            />
+            <span class="text-slate-500 text-xs hidden sm:inline">•</span>
+            <div class="flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-700/70 text-slate-300 text-xs">
+                <img 
+                    src="https://raw.githubusercontent.com/solutionsbysandra/new/c663a663ee42d9dcbed0b4b5534e6158062a5ab9/OurTeamsGlobal.svg" 
+                    alt="Our Teams Global" 
+                    class="h-3.5 w-auto object-contain"
+                    onerror="this.style.display='none'"
+                />
+                <span class="font-semibold text-slate-200">Elevate 2026</span>
+            </div>
+        </div>
+
+        <!-- Action Controls: Print Sign & Fullscreen Kiosk Mode -->
+        <div class="flex items-center space-x-2.5">
+            <!-- Print Table Sign Button -->
+            <button 
+                onclick="printTableSign()" 
+                title="Print 8.5x11 Tabletop Sign"
+                class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 transition shadow-sm cursor-pointer">
+                <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H9v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                <span>Print Table Sign</span>
+            </button>
+
+            <!-- Fullscreen Kiosk Toggle -->
+            <button 
+                onclick="toggleFullScreen()" 
+                id="fullscreenBtn"
+                title="Enter Fullscreen Kiosk" 
+                class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-sm hover:shadow-indigo-500/25 cursor-pointer">
+                <svg id="fullscreenIcon" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+                <span id="fullscreenText">Fullscreen Kiosk</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         SCREEN DISPLAY (Laptop Kiosk)
+         ========================================== -->
+    <main class="screen-only flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex flex-col justify-center items-center relative z-10">
+
+        <!-- Hero Section: Dominant mTap Branding & Event Partner Context -->
+        <div class="text-center mb-6 sm:mb-8 w-full max-w-2xl">
+            
+            <!-- Event & Organization Partner Badge -->
+            <div class="inline-flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 mb-5 shadow-sm">
+                <img 
+                    src="https://raw.githubusercontent.com/solutionsbysandra/new/c663a663ee42d9dcbed0b4b5534e6158062a5ab9/OurTeamsGlobal.svg" 
+                    alt="Our Teams Global" 
+                    class="h-4 w-auto object-contain"
+                    onerror="this.style.display='none'"
+                />
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+                <span class="text-xs font-bold tracking-wider text-slate-200 uppercase">
+                    Our Teams Global • Elevate 2026
+                </span>
+            </div>
+
+            <!-- Official White mTap Logo as the Dominant Hero -->
+            <div class="flex items-center justify-center mb-3">
+                <img 
+                    src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/White%20Logo%20800px%20with%20slogan.png" 
+                    alt="mTap - A New Way to Network" 
+                    class="h-20 sm:h-28 lg:h-32 w-auto object-contain mx-auto filter drop-shadow-[0_8px_24px_rgba(99,102,241,0.28)]"
+                    onerror="this.src='https://placehold.co/600x180/0f172a/ffffff?text=mTap+%7C+A+New+Way+to+Network'"
+                />
+            </div>
+
+            <p class="text-sm sm:text-base text-slate-300 max-w-md mx-auto mt-2 font-normal">
+                Scan below to access digital networking features and connect seamlessly throughout <strong class="text-indigo-300 font-semibold">Elevate 2026</strong>.
+            </p>
+        </div>
+
+        <!-- Focused Single Event QR Card -->
+        <div class="w-full max-w-lg">
+            <div class="glass-card rounded-3xl p-6 sm:p-9 flex flex-col items-center text-center transition-all duration-300 border-indigo-500/30 hover:border-indigo-500/60 hover:shadow-2xl hover:shadow-indigo-500/15">
+                
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-indigo-950/80 border border-indigo-700/60 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                    <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span>Official Event Experience</span>
+                </div>
+
+                <h1 class="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight">
+                    How To Use mTap At Elevate
+                </h1>
+                
+                <p class="text-xs sm:text-sm text-slate-300 mb-6 max-w-sm">
+                    Tap into the future of business connection. Share your profile, exchange contact details, and save leads with zero paper.
+                </p>
+
+                <!-- High-contrast QR Container -->
+                <div class="qr-wrapper bg-white p-4 sm:p-5 rounded-2xl shadow-xl flex items-center justify-center mb-6">
+                    <img 
+                        src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/elevate%20mtap.png" 
+                        alt="Elevate 2026 mTap QR Code" 
+                        class="w-[220px] h-[220px] sm:w-[250px] sm:h-[250px] object-contain rounded-lg"
+                        loading="eager"
+                        onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fmtapnfc.com%2Felevate2026'"
+                    />
+                </div>
+
+                <!-- Direct Hyperlink Button -->
+                <div class="w-full pt-1 flex items-center justify-center">
+                    <a 
+                        href="https://mtapnfc.com/elevate2026" 
+                        target="_blank" 
+                        rel="noopener" 
+                        class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition shadow-md hover:shadow-indigo-500/25 w-full sm:w-auto justify-center">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        <span>Visit mtapnfc.com/elevate2026 ↗</span>
+                    </a>
+                </div>
+
+                <!-- Scan Instruction Badge -->
+                <div class="mt-5 text-center text-xs text-slate-400 flex items-center justify-center space-x-1.5">
+                    <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Point your phone camera to scan</span>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ========================================================
+         PRINT SECTION: STANDALONE 8.5" x 11" TABLETOP SIGN
+         ======================================================== -->
+    <div class="print-only">
+        
+        <section class="border-[6px] border-slate-900 rounded-[2.5rem] text-center bg-white text-slate-900 shadow-none h-full flex flex-col justify-between p-6">
+            
+            <!-- Top Branding & Event Header -->
+            <div class="pt-2">
+                
+                <!-- Our Teams Global & Elevate Badge -->
+                <div class="inline-flex items-center space-x-2 px-5 py-1.5 rounded-full border-2 border-slate-900 text-xs font-black tracking-widest uppercase text-slate-900 mb-4">
+                    <img 
+                        src="https://raw.githubusercontent.com/solutionsbysandra/new/c663a663ee42d9dcbed0b4b5534e6158062a5ab9/OurTeamsGlobal.svg" 
+                        alt="Our Teams Global" 
+                        class="h-4 w-auto object-contain filter grayscale contrast-200"
+                        onerror="this.style.display='none'"
+                    />
+                    <span>Our Teams Global • Elevate 2026</span>
+                </div>
+
+                <!-- Official Black mTap Logo for Print -->
+                <div class="flex justify-center mb-4">
+                    <img 
+                        src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/Black%20Logo%203200px%20with%20slogan.png" 
+                        alt="mTap - A New Way to Network" 
+                        class="h-28 w-auto object-contain"
+                    />
+                </div>
+
+                <div class="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full mb-4"></div>
+
+                <!-- Big Headline for Tabletop Viewing -->
+                <h1 class="text-5xl font-black tracking-tight text-slate-950 mb-3 uppercase leading-tight">
+                    How To Use mTap At Elevate
+                </h1>
+                
+                <!-- Quick 3-Step Benefit Grid -->
+                <div class="grid grid-cols-3 gap-3 max-w-lg mx-auto text-left my-3 text-xs font-bold text-slate-800">
+                    <div class="bg-slate-100 p-2.5 rounded-xl border border-slate-300">
+                        <span class="block text-indigo-700 font-extrabold text-sm mb-0.5">1. Tap or Scan</span>
+                        Share your profile instantly
+                    </div>
+                    <div class="bg-slate-100 p-2.5 rounded-xl border border-slate-300">
+                        <span class="block text-indigo-700 font-extrabold text-sm mb-0.5">2. Connect</span>
+                        Exchange contacts seamlessly
+                    </div>
+                    <div class="bg-slate-100 p-2.5 rounded-xl border border-slate-300">
+                        <span class="block text-indigo-700 font-extrabold text-sm mb-0.5">3. Zero Paper</span>
+                        Save leads straight to phone
+                    </div>
+                </div>
+            </div>
+
+            <!-- Large Tabletop Distance QR Box (340px for comfortable 3-4 ft scanning) -->
+            <div class="my-auto flex flex-col items-center justify-center">
+                <div class="p-5 border-4 border-slate-950 rounded-3xl bg-white shadow-none inline-block">
+                    <img 
+                        src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/elevate%20mtap.png" 
+                        alt="Elevate 2026 QR Code" 
+                        class="w-[330px] h-[330px] object-contain rounded-lg"
+                        onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=https%3A%2F%2Fmtapnfc.com%2Felevate2026'"
+                    />
+                </div>
+                <p class="text-xl font-black text-slate-950 mt-4 tracking-wider">
+                    mtapnfc.com/elevate2026
+                </p>
+            </div>
+
+            <!-- Print Footer Instruction: Elevated to clear tabletop frame lip -->
+            <div class="pt-3 border-t-2 border-slate-300 pb-1">
+                <div class="flex items-center justify-center space-x-2 text-slate-900 font-black text-base uppercase tracking-widest bg-slate-100 py-2.5 px-6 rounded-full max-w-md mx-auto border border-slate-300">
+                    <svg class="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Point your phone camera to scan</span>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Screen Toast Notification -->
+    <div id="toast" class="no-print fixed bottom-5 right-5 z-50 bg-indigo-600 text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2 pointer-events-none">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span id="toastMsg">Ready</span>
+    </div>
+
+    <script>
+        // Non-intrusive toast notification
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toastMsg");
+            if (!toast || !toastMsg) return;
+            toastMsg.innerText = message;
+            toast.classList.remove("translate-y-20", "opacity-0");
+            setTimeout(function () {
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 2500);
+        }
+
+        // Print handler for tabletop sign
+        function printTableSign() {
+            showToast("Opening Tabletop Sign Print Dialog...");
+            setTimeout(() => {
+                window.print();
+            }, 200);
+        }
+
+        // Fullscreen toggle for laptop booth station
+        function toggleFullScreen() {
+            const btnText = document.getElementById("fullscreenText");
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    if (btnText) btnText.innerText = "Exit Kiosk";
+                    showToast("Kiosk Mode Activated");
+                }).catch(() => {
+                    showToast("Fullscreen not allowed in iframe");
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen().then(() => {
+                        if (btnText) btnText.innerText = "Fullscreen Kiosk";
+                    });
+                }
+            }
+        }
+
+        // Sync fullscreen text on keyboard Escape
+        document.addEventListener("fullscreenchange", function () {
+            const btnText = document.getElementById("fullscreenText");
+            if (!document.fullscreenElement && btnText) {
+                btnText.innerText = "Fullscreen Kiosk";
+            }
+        });
+    </script>
+</body>
+</html>
