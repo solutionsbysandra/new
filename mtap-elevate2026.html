@@ -234,8 +234,13 @@
                 <div class="lg:col-span-5 flex flex-col items-center justify-center">
                     <div class="bg-gradient-to-b from-indigo-500/10 to-slate-900/80 p-4 sm:p-5 rounded-3xl border border-indigo-500/30 flex flex-col items-center shadow-xl w-full max-w-[320px] sm:max-w-[340px]">
                         
-                        <!-- High-contrast QR Container -->
-                        <div class="qr-wrapper bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center justify-center">
+                        <!-- High-contrast QR Container (Clickable) -->
+                        <a 
+                            href="https://mtapnfc.com/elevate2026" 
+                            target="_blank" 
+                            rel="noopener"
+                            title="Click or scan to visit mtapnfc.com/elevate2026"
+                            class="qr-wrapper bg-white p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center justify-center transition-transform hover:scale-[1.02] cursor-pointer block">
                             <img 
                                 src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/elevate%20mtap.png" 
                                 alt="Elevate 2026 mTap QR Code" 
@@ -243,7 +248,7 @@
                                 loading="eager"
                                 onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fmtapnfc.com%2Felevate2026'"
                             />
-                        </div>
+                        </a>
 
                         <!-- Scan Prompt -->
                         <div class="mt-4 text-center">
@@ -254,9 +259,13 @@
                                 </svg>
                                 <span>Point your phone camera to scan</span>
                             </div>
-                            <p class="text-[11px] text-slate-400 mt-2 font-mono">
+                            <a 
+                                href="https://mtapnfc.com/elevate2026" 
+                                target="_blank" 
+                                rel="noopener" 
+                                class="text-[12px] text-indigo-300 hover:text-indigo-200 underline underline-offset-2 mt-2 font-mono block transition">
                                 mtapnfc.com/elevate2026
-                            </p>
+                            </a>
                         </div>
 
                     </div>
@@ -328,11 +337,11 @@
                         src="https://raw.githubusercontent.com/solutionsbysandra/new/refs/heads/main/elevate%20mtap.png" 
                         alt="Elevate 2026 QR Code" 
                         class="w-[330px] h-[330px] object-contain rounded-lg"
-                        onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=https%3A%2F%2Fwww.ourteams.org%2Felevate-2026'"
+                        onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=330x330&data=https%3A%2F%2Fmtapnfc.com%2Felevate2026'"
                     />
                 </div>
-                <p class="text-xl font-black text-slate-950 mt-4 tracking-wider">
-                    ourteams.org/elevate-2026
+                <p class="text-xl font-black text-slate-950 mt-4 tracking-wider font-mono">
+                    mtapnfc.com/elevate2026
                 </p>
             </div>
 
